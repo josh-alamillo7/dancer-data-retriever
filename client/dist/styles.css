@@ -1,0 +1,43 @@
+body {
+
+}
+
+.beginnerTitle {
+  color: blue;
+}
+
+.basicTitle {
+  color: yellow;
+}
+
+.difficultTitle {
+  color: red;
+}
+
+.expertTitle {
+  color: green;
+}
+
+.challengeTitle {
+  color: purple;
+}
+
+.infoContainer {
+  padding-top: 20px;
+}
+
+.usernameInput {
+  padding-top: 15px;
+  padding-bottom: 8px;
+}
+
+.songListContainer {
+  float: left;
+  padding-left: 20px;
+}
+
+.scoreInfoContainer {
+  float: right;
+  padding-left: 30px;
+  padding-right: 40px;
+}
