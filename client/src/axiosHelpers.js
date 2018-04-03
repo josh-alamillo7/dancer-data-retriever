@@ -20,5 +20,21 @@ const fetchScoreInfo = (title, difficulty, callback) => {
   })
 }
 
+const putScore = (username, score, level, difficulty, title) => {
+  axios.put(`/users/${username}`, {
+    score: score,
+    level: level,
+    difficulty: difficulty,
+    title: title
+  })
+  .then(() => {
+    console.log('User/score info saved!')
+  })
+  .catch((err) => {
+    console.log('Something went wrong with putting the score in :(', err)
+  })
+}
+
 module.exports.fetchByLevel = fetchByLevel;
 module.exports.fetchScoreInfo = fetchScoreInfo;
+module.exports.putScore = putScore;

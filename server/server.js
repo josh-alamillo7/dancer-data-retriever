@@ -29,9 +29,13 @@ app.put('/users/:name', (req, res) => {
 
   //otherwise, just add the song to their score.
   db.checkIfUserExists(req.params.name, (userExists) => {
+    console.log(userExists)
     if (!userExists) {
-      
+      db.saveUser(req.params.name, req.body.score, req.body.level, req.body.difficulty, req.body.title)      
+    } else {
+      console.log('this user already exists so we are going to do something else :)')
     }
   })
-  res.status(501).send('looks like you want to add some score info')
+  res.status(201).send('looks like you want to add some score info')
+  
 })

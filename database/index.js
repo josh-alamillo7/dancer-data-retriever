@@ -77,10 +77,11 @@ let saveUser = (username, score, level, difficulty, title) => {
 }
 
 let checkIfUserExists = (username, callback) => {
-  User.find({"id": username}, (err, data) => {
+  User.find({"username": username}, (err, data) => {
     if (err) {
       console.log("Error", err)
     } else {
+      console.log("DATA", data)
       if (data.length === 0) {
         callback(false)
       }
