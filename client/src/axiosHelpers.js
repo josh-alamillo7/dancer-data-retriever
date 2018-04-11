@@ -35,6 +35,17 @@ const putScore = (username, score, level, difficulty, title) => {
   })
 }
 
+const getUserScore = (username, title, level, callback) => {
+  axios.get(`/users/${username}/${title}/${level}`)
+  .then((response) => {
+    callback(response.data)
+  })
+  .catch((err) => {
+    callback(err)
+  })
+}
+
 module.exports.fetchByLevel = fetchByLevel;
 module.exports.fetchScoreInfo = fetchScoreInfo;
 module.exports.putScore = putScore;
+module.exports.getUserScore = getUserScore;

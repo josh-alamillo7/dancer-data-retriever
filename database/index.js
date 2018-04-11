@@ -81,7 +81,6 @@ let checkIfUserExists = (username, callback) => {
     if (err) {
       console.log("Error", err)
     } else {
-      console.log("DATA", data)
       if (data.length === 0) {
         callback(false)
       }
@@ -112,6 +111,40 @@ let findByTitle = (title, callback) => {
   })
 }
 
+let updateScoresForUser = (username, score, level, difficulty, title) => {
+  User.find({
+    username: username,
+    }, (err, data) => {
+      let found = false
+      for (let i = 0; i < data[0].scores.length; i++) {
+        let currentScore = data[0].scores[i]
+        if (currentScore.level === level && Number(currentScore.difficulty) === difficulty && currentScore.songTitle === title) {
+          found = true
+          break
+        }
+      }
+      if (!found) {
+        User.update(
+          {username: username},
+          { $push: 
+            { scores: 
+              {
+                songTitle: title,
+                level: level,
+                difficulty: difficulty,
+                score: score
+              }
+            }
+          }, (err) => {
+            if (err) {
+              console.log(err)
+            }
+          })
+      }    
+    })
+
+}
+
 let updateLevel = (levels, id) => {
   Song.update({'id': id},
   {
@@ -120,16 +153,30 @@ let updateLevel = (levels, id) => {
     if (err) {
       console.log("error on update level", err)
     } else {
-      // console.log("this song's levels should be updated now", id)
+      console.log("this song's levels should be updated now", id)
     }
   })
 }
 
+let getUserInfo = (username, callback) => {
+  User.find({"username": username}, (err, data) => {
+    if (err) {
+      console.log("error on finding user info")
+    } else {
+      callback(data[0].scores)
+    }
+  })
+}
+
+
+
 module.exports.Song = Song;
 module.exports.User = User;
+module.exports.updateScoresForUser = updateScoresForUser;
 module.exports.saveSong = saveSong;
 module.exports.saveUser = saveUser;
 module.exports.findById = findById;
+module.exports.getUserInfo = getUserInfo;
 module.exports.findByTitle = findByTitle;
 module.exports.updateLevel = updateLevel;
 module.exports.checkIfUserExists = checkIfUserExists

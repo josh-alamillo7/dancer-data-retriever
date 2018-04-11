@@ -23,7 +23,7 @@ class App extends React.Component {
     this.handleLevelChangeClick = this.handleLevelChangeClick.bind(this)
     this.handleSongNameClick = this.handleSongNameClick.bind(this)
     this.handleSubmitScoreClick = this.handleSubmitScoreClick.bind(this)
-    this.setPercentilebySong = this.setPercentilebySong.bind(this)
+    this.setPercentilebyScore = this.setPercentilebyScore.bind(this)
     this.filterSongs = this.filterSongs.bind(this)
   }
 
@@ -42,7 +42,7 @@ class App extends React.Component {
   handleLevelChangeClick(level) {
     const app = this;
     axiosHelpers.fetchByLevel(level, (data) => {
-      app.setState({songs: data, level: level})
+      app.setState({songs: data, level: level, scoreInfo: null, percentile: null})
     })
   }
 
@@ -50,20 +50,30 @@ class App extends React.Component {
     const app = this;
     axiosHelpers.fetchScoreInfo(song, level, (data) => {
       app.setState({scoreInfo: data, difficulty: level, title: song})
-    })
+      if (this.state.username !== null) {
+        axiosHelpers.getUserScore(app.state.username, song, level, (score) => {
+        console.log("SCORE", score)
+        if (score === null) {
+          app.setState({percentile: null})
+        }
+        app.setPercentilebyScore(Number(score))
+       })
+      }
+      
+  })
   }
 
   handleSubmitScoreClick(score) {
-    this.setPercentilebySong(score)
+    this.setPercentilebyScore(score);
     axiosHelpers.putScore(this.state.username, score, this.state.level, this.state.difficulty, this.state.title)
     //calculation: compare this score with scoreInfo(since they both correspond to the same song. Set the state percentile to be that)
 
     //the problem is that this also needs to happen if a song is clicked. But only if score Info is not null.
   }
 
-  setPercentilebySong(score) {
-    const totalPlayers = this.state.scoreInfo.length
-    let rank = totalPlayers
+  setPercentilebyScore(score) {
+    const totalPlayers = this.state.scoreInfo.length;
+    let rank = totalPlayers;
     for (let scoreIndex = 0; scoreIndex < totalPlayers; scoreIndex++) {
       if (score > this.state.scoreInfo[scoreIndex]) {
         rank = scoreIndex
