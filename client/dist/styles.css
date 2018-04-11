@@ -22,8 +22,12 @@ body {
   color: purple;
 }
 
+.filterSortContainer {
+  padding-top: 10px;
+}
+
 .infoContainer {
-  padding-top: 20px;
+  padding-top: 15px;
 }
 
 .usernameInput {

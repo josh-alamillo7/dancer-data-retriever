@@ -52,6 +52,9 @@ let findAllByLevel = (level, callback) => {
     if (err) {
       console.log("Something went wrong")
     } else {
+      data.sort((a, b) => {
+        return (a - b)
+      })
       callback(data)
     }
   })
@@ -163,7 +166,13 @@ let getUserInfo = (username, callback) => {
     if (err) {
       console.log("error on finding user info")
     } else {
-      callback(data[0].scores)
+      if (data.length === 0) {
+        callback([])
+      }
+      else {
+        callback(data[0].scores)
+      }
+      
     }
   })
 }

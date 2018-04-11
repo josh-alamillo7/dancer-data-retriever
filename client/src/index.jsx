@@ -42,6 +42,7 @@ class App extends React.Component {
   handleLevelChangeClick(level) {
     const app = this;
     axiosHelpers.fetchByLevel(level, (data) => {
+
       app.setState({songs: data, level: level, scoreInfo: null, percentile: null})
     })
   }
@@ -55,8 +56,10 @@ class App extends React.Component {
         console.log("SCORE", score)
         if (score === null) {
           app.setState({percentile: null})
+        } else {
+          app.setPercentilebyScore(Number(score))
         }
-        app.setPercentilebyScore(Number(score))
+        
        })
       }
       
@@ -91,8 +94,11 @@ class App extends React.Component {
         <UsernameText username={this.state.username} handleSubmitUsernameClick={this.handleSubmitUsernameClick} />
         <h2>Choose a level:</h2>
         <LevelClicks handleLevelChangeClick={this.handleLevelChangeClick} />
-        <h4>Filter by name:</h4>
+        <div className = "filterSortContainer">
+        <span>Filter by name: </span>
         <SongFilter filterSongs={this.filterSongs} />
+        <span> or sort by: </span>
+        </div>
         <div className = "infoContainer">
           <SongList songs={this.state.songs} handleSongNameClick={this.handleSongNameClick}/>
           <ScoreInfo scores={this.state.scoreInfo} handleSubmitScoreClick={this.handleSubmitScoreClick} percentile={this.state.percentile}/>
