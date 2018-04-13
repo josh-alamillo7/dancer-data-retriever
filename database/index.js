@@ -52,9 +52,6 @@ let findAllByLevel = (level, callback) => {
     if (err) {
       console.log("Something went wrong")
     } else {
-      data.sort((a, b) => {
-        return (a - b)
-      })
       callback(data)
     }
   })

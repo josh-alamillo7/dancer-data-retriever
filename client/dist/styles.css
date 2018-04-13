@@ -4,22 +4,27 @@ body {
 
 .beginnerTitle {
   color: blue;
+  font-family: Verdana;
 }
 
 .basicTitle {
   color: yellow;
+  font-family: Verdana;
 }
 
 .difficultTitle {
   color: red;
+  font-family: Verdana;
 }
 
 .expertTitle {
   color: green;
+  font-family: Verdana;
 }
 
 .challengeTitle {
   color: purple;
+  font-family: Verdana;
 }
 
 .filterSortContainer {
