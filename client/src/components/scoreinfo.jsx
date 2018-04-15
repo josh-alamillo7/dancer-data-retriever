@@ -21,7 +21,6 @@ const ScoreInfo = ({ scores, handleSubmitScoreClick, percentile }) => {
     }
 
     const totalPlayers = scores.length;
-    console.log(totalPlayers)
     const aaaNumber = scores.filter(score => {return score > 990000}).length;
     const aaaPercent = Math.floor((aaaNumber / totalPlayers) * 100);
     const pfcNumber = scores.filter(score => {return score > 999000}).length;
