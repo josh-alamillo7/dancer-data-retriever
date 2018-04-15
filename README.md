@@ -12,3 +12,5 @@ An app for competitive DDR players that converts data from skillattack.com into 
 1. Implement more sorting methods, priority is PFC% order and player score
 2. Add user authentication
 3. Allow users to add other users as rivals.
+
+![alt text](hrsf91-mvp-josh-alamillo/Dancer Data Retriever Sample Photo.png)
