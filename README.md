@@ -8,9 +8,11 @@ An app for competitive DDR players that converts data from skillattack.com into 
 4. Type localhost:7000 into your browser.
 5. Choose a name and get started!
 
+![alt text](https://i.imgur.com/a9IXmm3.png)
+
 ### to do:
 1. Implement more sorting methods, priority is PFC% order and player score
 2. Add user authentication
 3. Allow users to add other users as rivals.
 
-![alt text](https://i.imgur.com/a9IXmm3.png)
+
