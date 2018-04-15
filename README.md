@@ -13,4 +13,4 @@ An app for competitive DDR players that converts data from skillattack.com into 
 2. Add user authentication
 3. Allow users to add other users as rivals.
 
-![alt text](hrsf91-mvp-josh-alamillo/Dancer Data Retriever Sample Photo.png)
+![Screenshot][Dancer Data Retriever Sample Photo.png]
