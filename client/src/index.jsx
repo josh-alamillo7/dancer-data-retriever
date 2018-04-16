@@ -73,8 +73,7 @@ class App extends React.Component {
           app.setState({percentile: null})
         } else {
           app.setPercentilebyScore(Number(score))
-        }
-        
+        }        
        })
       }
   })
@@ -107,6 +106,13 @@ class App extends React.Component {
       case 'ABCSort':
         sorts.ABCSort(this.state.songs)
         app.setState({displaySongs: this.state.songs.slice(0, 20)})
+
+      case 'PFCSort':
+        sorts.PFCSort(this.state.songs).then((sortedArray) => {
+          app.setState({songs: sortedArray, displaySongs: sortedArray.slice(0, 20)})
+        }).catch((err) => {
+          console.log(err)
+        })
     }
     
   }
