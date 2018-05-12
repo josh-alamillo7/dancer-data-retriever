@@ -26,7 +26,6 @@ const genPFCMap = (songs) => {
 const PFCSort = (songs) => {
   return new Promise((resolve, reject) => {
     genPFCMap(songs).then((tuples) => {
-      console.log("TUPLES", tuples)
       tuples.sort()
       tuples.reverse()
       const map = tuples.map((tuple) => {

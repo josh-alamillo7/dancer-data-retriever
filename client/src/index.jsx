@@ -100,12 +100,14 @@ class App extends React.Component {
   }
 
   sortSongs(e) {
+    console.log(e.target.id)
     const app = this
 
     switch (e.target.id) {
       case 'ABCSort':
         sorts.ABCSort(this.state.songs)
         app.setState({displaySongs: this.state.songs.slice(0, 20)})
+        break;
 
       case 'PFCSort':
         sorts.PFCSort(this.state.songs).then((sortedArray) => {
@@ -113,6 +115,7 @@ class App extends React.Component {
         }).catch((err) => {
           console.log(err)
         })
+        break;
     }
     
   }
