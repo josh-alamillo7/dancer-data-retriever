@@ -26,14 +26,39 @@ const genPFCMap = (songs) => {
 const PFCSort = (songs) => {
   return new Promise((resolve, reject) => {
     genPFCMap(songs).then((tuples) => {
-      tuples.sort()
-      tuples.reverse()
+      tuples = INSERTiONSort(tuples)
+      tuples = tuples.reverse()
       const map = tuples.map((tuple) => {
         return tuple[1]
       })
       resolve(map)
     })
   })
+}
+
+const INSERTiONSort = (songs) => {
+
+  let elementOne;
+  let currIdx
+
+  const swapPositions = (array, indexOne, indexTwo) => {
+    elementOne = array[indexOne];
+    array[indexOne] = array[indexTwo];
+    array[indexTwo] = elementOne;
+  }
+
+  for (let i = 0; i < songs.length; i++) {
+    currIdx = i
+    for (let j = i - 1; j >= 0; j--) {
+      if (songs[j][0] > songs[currIdx][0]) {
+        swapPositions(songs, currIdx, j)
+        currIdx--
+      }
+    }
+  }
+
+  return songs
+
 }
 
 // const PFCSort = (songs, callback) => {
