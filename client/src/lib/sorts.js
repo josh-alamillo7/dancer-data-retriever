@@ -39,7 +39,7 @@ const PFCSort = (songs) => {
 const INSERTiONSort = (songs) => {
 
   let elementOne;
-  let currIdx
+  let currIdx;
 
   const swapPositions = (array, indexOne, indexTwo) => {
     elementOne = array[indexOne];
@@ -60,19 +60,6 @@ const INSERTiONSort = (songs) => {
   return songs
 
 }
-
-// const PFCSort = (songs, callback) => {
-//   genPFCMap(songs).then((tuples) => {
-//     tuples.sort()
-//     tuples.reverse()
-//     const map = tuples.map((tuple) => {
-//       return tuple[1]
-//     })
-//     callback(map)
-//   }).catch((err) => {
-//     console.log(err)
-//   })
-// }
 
 
 

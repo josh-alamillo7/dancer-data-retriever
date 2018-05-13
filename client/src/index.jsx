@@ -134,8 +134,13 @@ class App extends React.Component {
           <SongSort sortSongs={this.sortSongs} />
         </div>
         <div className = "infoContainer">
+          <div>You are viewing the information for songtitle</div>
           <SongList songs={this.state.displaySongs} handleSongNameClick={this.handleSongNameClick}/>
           <PageNavigationClicks handleBackwardsClick={this.handleBackwardsClick} handleForwardClick={this.handleForwardClick} songs={this.state.songs} displaySongs={this.state.displaySongs}/>
+          
+        </div>
+        <div className = "titleAndscoreInfoContainer">
+          
           <ScoreInfo scores={this.state.scoreInfo} handleSubmitScoreClick={this.handleSubmitScoreClick} percentile={this.state.percentile}/>
         </div>
       </div>

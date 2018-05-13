@@ -1,6 +1,8 @@
 body {
-
+  background: linear-gradient(to bottom right, lightblue, white)
 }
+
+
 
 .beginnerTitle {
   color: blue;
@@ -8,7 +10,7 @@ body {
 }
 
 .basicTitle {
-  color: yellow;
+  color: #DAA520;
   font-family: Verdana;
 }
 
@@ -43,6 +45,10 @@ body {
 .songListContainer {
   float: left;
   padding-left: 20px;
+}
+
+.navClickButton {
+  font-size: 18px;
 }
 
 .scoreInfoContainer {

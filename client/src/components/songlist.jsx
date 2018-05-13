@@ -1,8 +1,9 @@
 import React from 'react';
 
+
 const SongList = ({ songs , handleSongNameClick }) => {
   const indexToLevelClass = ['beginnerTitle', 'basicTitle', 'difficultTitle', 'expertTitle', 'challengeTitle'];
-  return (<span className="songListContainer">
+  return (<span>
     {songs.map(song => 
       {
         return <div className={indexToLevelClass[song[1]]} onClick={() => {
