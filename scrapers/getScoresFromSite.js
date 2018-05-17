@@ -1,6 +1,6 @@
 const axios = require('axios')
 const db = require('../database/index.js')
-
+const titleFixes = require('./titleFixes')
 
 const getScoreArrayDescending = (string) => {
   let scores = string.split('\'').filter((item) => {
@@ -21,6 +21,8 @@ const getScoreArrayDescending = (string) => {
 
 // this seeds mongo with score and title info for all 783 songs. Skip ace for aces
 
+let titlePart;
+
 const getScoreForHundredSongs = (iteration) => {
   for (let id = iteration * 100; id < (iteration + 1) * 100; id++) {
     axios.get(`http://skillattack.com/sa4/music.php?index=${id}`)
@@ -28,15 +30,22 @@ const getScoreForHundredSongs = (iteration) => {
       songInfo = {}
       songInfo['id'] = id
       let splitsArray = response.data.split(';')
-      let titlePart = splitsArray.filter((item) => {
+
+      if (titleFixes[id] !== undefined) {
+        titlePart = titleFixes[id]
+      }
+      else {
+        titlePart = splitsArray.filter((item) => {
         return item.includes('sMusic')
-      })[0].split('\'')[1]
+        })[0].split('\'')[1]
+      }
 
       console.log('id', id, titlePart)
 
       let scoresOnly = splitsArray.filter((item) => {
         return item.includes('Array(\'') && item.includes('Score')
       })
+
       songInfo['title'] = titlePart
       songInfo['levels'] = [null, null, null, null, null]
       songInfo['beginnerScores'] = getScoreArrayDescending(scoresOnly[0])
