@@ -8,7 +8,8 @@ import SongFilter from './components/songfilter.jsx';
 import axiosHelpers from './lib/axiosHelpers.js';
 import sorts from './lib/sorts.js';
 import SongSort from './components/songsort.jsx';
-import PageNavigationClicks from './components/pagenavigationclicks.jsx'
+import PageNavigationClicks from './components/pagenavigationclicks.jsx';
+import StatsTitle from './components/statstitle.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -59,7 +60,7 @@ class App extends React.Component {
   handleLevelChangeClick(level) {
     const app = this;
     axiosHelpers.fetchByLevel(level, (data) => {
-      app.setState({displaySongs: data.slice(0, 20), songs: data, level: level, scoreInfo: null, percentile: null})
+      app.setState({displaySongs: data.slice(0, 20), songs: data, level: level, scoreInfo: null, percentile: null, title: null})
     })
   }
 
@@ -100,7 +101,6 @@ class App extends React.Component {
   }
 
   sortSongs(e) {
-    console.log(e.target.id)
     const app = this
 
     switch (e.target.id) {
@@ -133,15 +133,15 @@ class App extends React.Component {
           <span> or sort by: </span>
           <SongSort sortSongs={this.sortSongs} />
         </div>
-        <div className = "infoContainer">
-          <div>You are viewing the information for songtitle</div>
-          <SongList songs={this.state.displaySongs} handleSongNameClick={this.handleSongNameClick}/>
-          <PageNavigationClicks handleBackwardsClick={this.handleBackwardsClick} handleForwardClick={this.handleForwardClick} songs={this.state.songs} displaySongs={this.state.displaySongs}/>
-          
-        </div>
-        <div className = "titleAndscoreInfoContainer">
-          
-          <ScoreInfo scores={this.state.scoreInfo} handleSubmitScoreClick={this.handleSubmitScoreClick} percentile={this.state.percentile}/>
+        <div className = "allInfoContainer">
+          <div className = "clicksContainer">
+            <SongList songs={this.state.displaySongs} handleSongNameClick={this.handleSongNameClick}/>
+            <PageNavigationClicks handleBackwardsClick={this.handleBackwardsClick} handleForwardClick={this.handleForwardClick} songs={this.state.songs} displaySongs={this.state.displaySongs}/> 
+          </div>
+          <div className = "titleAndScoreInfoContainer">
+            <StatsTitle title={this.state.title} />
+            <ScoreInfo scores={this.state.scoreInfo} handleSubmitScoreClick={this.handleSubmitScoreClick} percentile={this.state.percentile}/>
+          </div>
         </div>
       </div>
     )

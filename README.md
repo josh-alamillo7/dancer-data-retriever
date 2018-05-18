@@ -8,10 +8,11 @@ An app for competitive DDR players that converts data from skillattack.com into 
 4. Go into ```scrapers``` directory to access seeding functions.
 5. ```node getScoresFromSite.js```
 6. ```node getLevelInfo.js```
-7. Type localhost:7000 into your browser.
-8. Choose a name and get started!
+7. From root directory: ```./node_modules/.bin/webpack -d --watch```
+8. Type localhost:7000 into your browser.
+9. Choose a name and get started!
 
-![alt text](https://i.imgur.com/a9IXmm3.png)
+![alt text](https://i.imgur.com/BpyLHui.png)
 
 ### to do:
 1. Implement more sorting methods, priority is PFC% order and player score

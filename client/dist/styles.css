@@ -2,7 +2,9 @@ body {
   background: linear-gradient(to bottom right, lightblue, white)
 }
 
-
+.allInfoContainer {
+  display: flex;
+}
 
 .beginnerTitle {
   color: blue;
@@ -33,7 +35,11 @@ body {
   padding-top: 10px;
 }
 
-.infoContainer {
+.clicksContainer {
+  padding-top: 15px;
+}
+
+.titleAndScoreInfoContainer {
   padding-top: 15px;
 }
 
@@ -43,8 +49,12 @@ body {
 }
 
 .songListContainer {
-  float: left;
   padding-left: 20px;
+}
+
+.statsInfo {
+  font-weight: bold;
+  font-size: 22px;
 }
 
 .navClickButton {

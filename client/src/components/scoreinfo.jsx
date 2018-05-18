@@ -3,7 +3,7 @@ import InfoInput from './infoinput.jsx'
 
 const ScoreInfo = ({ scores, handleSubmitScoreClick, percentile }) => {
   if (scores === null) {
-    return (<span className="scoreInfoContainer">Please choose a level and song</span>)
+    return (<div>Choose a song!</div>)
   }
   else {
     let infoText = `You don't appear to have a score for this song yet. Insert one below!`
