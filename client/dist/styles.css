@@ -1,5 +1,6 @@
 body {
-  background: linear-gradient(to bottom right, lightblue, white)
+  background: linear-gradient(to bottom right, lightblue, white) no-repeat;
+  background-size: 1500px 900px;
 }
 
 .allInfoContainer {
