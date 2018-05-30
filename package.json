@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "./node_modules/.bin/webpack -d --watch",
-    "start": "./server/server.js",
-    "get-scores": "./scrapers/getScoresFromSite.js",
-    "get-levels": "./scrapers/getLevelInfo.js"
+    "start": "node ./server/server.js",
+    "get-scores": "node ./scrapers/getScoresFromSite.js",
+    "get-levels": "node ./scrapers/getLevelInfo.js"
   },
   "author": "",
   "license": "ISC",
