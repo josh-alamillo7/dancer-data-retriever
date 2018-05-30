@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/.bin/webpack -d --watch"
+    "build": "./node_modules/.bin/webpack -d --watch",
+    "start": "./server/server.js",
+    "get-scores": "./scrapers/getScoresFromSite.js",
+    "get-levels": "./scrapers/getLevelInfo.js"
   },
   "author": "",
   "license": "ISC",
