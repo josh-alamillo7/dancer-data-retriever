@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "./node_modules/.bin/webpack -d --watch",
     "start": "node ./server/server.js",
-    "get-scores": "./scrapers/getScoresFromSite.js",
-    "get-levels": "./scrapers/getLevelInfo.js"
+    "get-scores": "node ./scrapers/getScoresFromSite.js",
+    "get-levels": "node ./scrapers/getLevelInfo.js"
   },
   "author": "",
   "license": "ISC",
