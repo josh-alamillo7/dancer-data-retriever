@@ -2,6 +2,8 @@ const axios = require('axios')
 const db = require('../database/index.js')
 
 const fetchLevelInfo = (level) => {
+console.log(`Fetching level info for level ${level}`)
+
   axios.get(`http://skillattack.com/sa4/dancer_score.php?_=rival&ddrcode=51457120&style=0&difficulty=${level}`)
   .then((response) => {
     let splitsArray = response.data.split(';')
@@ -14,7 +16,6 @@ const fetchLevelInfo = (level) => {
     idDifficultyMap = ids.map((id, index) => [level, id, difficulties[index]])
 
     idDifficultyMap.forEach((tuple, idx, map) => {
-      console.log(tuple)
       db.findById(tuple, (data) => {
         if (data.length === 0) {
           console.log(`could not FIND any song with id ${tuple[1]}`)
@@ -24,8 +25,11 @@ const fetchLevelInfo = (level) => {
           let newLevels = data[0].levels
           db.updateLevel(newLevels, tuple[1])
         }
-        if (idx === map.length - 1 && level < 19) {
+        if (idx === map.length - 1 && level <= 19) {
           fetchLevelInfo(level + 1)
+        } else if (level === 20) {
+          console.log('...done.')
+          db.disconnect()
         }
         
       })
