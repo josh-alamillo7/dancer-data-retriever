@@ -43,7 +43,7 @@ let saveSong = (songInfo, callback) => {
     }
     else {
       callback(songInfo.id + 1)      
-      console.log('song info saved!')
+      console.log(`song info for ${songInfo.title} saved!`)
     }
   })
 }

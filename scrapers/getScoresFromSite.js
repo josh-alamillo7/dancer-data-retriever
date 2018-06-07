@@ -26,10 +26,11 @@ let currId;
 
 const getScoreForSong = (id) => {
 
-  console.log(id)
   currId = id
-  if (currId < 600) {
-    console.log('lower')
+  if (currId < 750) {
+    if (currId > 0) {
+      console.log(`saved ${id}/788 songs`)
+    }
     for (let id = currId; id < currId + 50; id++) {
       axios.get(`http://skillattack.com/sa4/music.php?index=${id}`)
       .then((response) => {
@@ -40,7 +41,7 @@ const getScoreForSong = (id) => {
         })
       })
       .catch((err) => {
-        // console.log(err)
+        console.log(err)
       })
     }
   }
@@ -50,8 +51,9 @@ const getScoreForSong = (id) => {
     .then((response) => {
       db.saveSong(convertDataIntoSongInfo(id, response), (id) => {
         if (id <= 788) {
-          getScoreForSong(id + 1)
+          getScoreForSong(id)
         } else {
+          console.log('...done')
           db.disconnect()
         }
       })
@@ -121,7 +123,7 @@ const convertDataIntoSongInfo = (id, response) => {
     })[0].split('\'')[1]
   }
 
-  console.log('fetching info for song ID: ', id, titlePart)
+  // console.log('fetching info for song ID: ', id, titlePart)
 
   let scoresOnly = splitsArray.filter((item) => {
     return item.includes('Array(\'') && item.includes('Score')
