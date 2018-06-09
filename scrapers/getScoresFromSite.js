@@ -29,7 +29,7 @@ const getScoreForSong = (id) => {
   currId = id
   if (currId < 750) {
     if (currId > 0) {
-      console.log(`saved ${id}/788 songs`)
+      console.log(`saved ${id}/789 songs`)
     }
     for (let id = currId; id < currId + 50; id++) {
       axios.get(`http://skillattack.com/sa4/music.php?index=${id}`)
@@ -50,7 +50,7 @@ const getScoreForSong = (id) => {
     axios.get(`http://skillattack.com/sa4/music.php?index=${id}`)
     .then((response) => {
       db.saveSong(convertDataIntoSongInfo(id, response), (id) => {
-        if (id <= 788) {
+        if (id <= 789) {
           getScoreForSong(id)
         } else {
           console.log('...done')
@@ -63,51 +63,7 @@ const getScoreForSong = (id) => {
     })
   }
 
-    // axios.get(`http://skillattack.com/sa4/music.php?index=${id}`)
-    // .then((response) => {
-
-
-
-
-      // songInfo = {}
-      // songInfo['id'] = id
-      // let splitsArray = response.data.split(';')
-
-      // if (titleFixes[id] !== undefined) {
-      //   titlePart = titleFixes[id]
-      // }
-      // else {
-      //   titlePart = splitsArray.filter((item) => {
-      //   return item.includes('sMusic')
-      //   })[0].split('\'')[1]
-      // }
-
-      // console.log('fetching info for song ID: ', id, titlePart)
-
-      // let scoresOnly = splitsArray.filter((item) => {
-      //   return item.includes('Array(\'') && item.includes('Score')
-      // })
-
-
-      // songInfo['title'] = titlePart
-      // songInfo['levels'] = [null, null, null, null, null]
-      // songInfo['beginnerScores'] = getScoreArrayDescending(scoresOnly[0])
-      // songInfo['basicScores'] = getScoreArrayDescending(scoresOnly[1])
-      // songInfo['difficultScores'] = getScoreArrayDescending(scoresOnly[2])
-      // songInfo['expertScores'] = getScoreArrayDescending(scoresOnly[3])
-      // songInfo['challengeScores'] = getScoreArrayDescending(scoresOnly[4])
-
-      // db.saveSong(songInfo, (id) => {
-      //   if (id <= 788) {
-      //     getScoreForSong(id)
-      //   } else {
-      //     db.disconnect()
-      //   }
-      // })
-    // })
-    // .catch((err) => {
-    //   console.log(err)
-    // })
+    
 }
 
 const convertDataIntoSongInfo = (id, response) => {
@@ -123,8 +79,6 @@ const convertDataIntoSongInfo = (id, response) => {
     })[0].split('\'')[1]
   }
 
-  // console.log('fetching info for song ID: ', id, titlePart)
-
   let scoresOnly = splitsArray.filter((item) => {
     return item.includes('Array(\'') && item.includes('Score')
   })
@@ -139,48 +93,9 @@ const convertDataIntoSongInfo = (id, response) => {
   songInfo['challengeScores'] = getScoreArrayDescending(scoresOnly[4])
 
   return songInfo
-
-  // db.saveSong(songInfo, (id) => {
-  //   if (id <= 788) {
-  //     getScoreForSong(id)
-  //   } else {
-  //     db.disconnect()
-  //   }
-  // })
 }
 
 
 getScoreForSong(0);
 
-// for (let id = 700; id < 784; id++) {
-//   axios.get(`http://skillattack.com/sa4/music.php?index=${id}`)
-//   .then((response) => {
-//     songInfo = {}
-//     songInfo['id'] = id
-//     let splitsArray = response.data.split(';')
-//     let titlePart = splitsArray.filter((item) => {
-//       return item.includes('sMusic')
-//     })[0].split('\'')[1]
 
-//     console.log('id', id, titlePart)
-
-//     let scoresOnly = splitsArray.filter((item) => {
-//       return item.includes('Array(\'') && item.includes('Score')
-//     })
-//     songInfo['title'] = titlePart
-//     songInfo['levels'] = [null, null, null, null, null]
-//     songInfo['beginnerScores'] = getScoreArrayDescending(scoresOnly[0])
-//     songInfo['basicScores'] = getScoreArrayDescending(scoresOnly[1])
-//     songInfo['difficultScores'] = getScoreArrayDescending(scoresOnly[2])
-//     songInfo['expertScores'] = getScoreArrayDescending(scoresOnly[3])
-//     songInfo['challengeScores'] = getScoreArrayDescending(scoresOnly[4])
-
-//     db.saveSong(songInfo)
-//   })
-//   .catch((err) => {
-//     console.log(err)
-//   })
-
-// }
-
-//this adds the correct level info
