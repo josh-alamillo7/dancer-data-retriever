@@ -2,7 +2,9 @@ const axios = require('axios')
 const db = require('../database/index.js')
 
 const fetchLevelInfo = (level) => {
-console.log(`Fetching level info for level ${level}`)
+  if (level < 20) {
+    console.log(`Fetching level info for level ${level}`)
+  }
 
   axios.get(`http://skillattack.com/sa4/dancer_score.php?_=rival&ddrcode=51457120&style=0&difficulty=${level}`)
   .then((response) => {
@@ -18,7 +20,9 @@ console.log(`Fetching level info for level ${level}`)
     idDifficultyMap.forEach((tuple, idx, map) => {
       db.findById(tuple, (data) => {
         if (data.length === 0) {
-          console.log(`could not FIND any song with id ${tuple[1]}`)
+          if (level < 20) {
+            console.log(`could not FIND any song with id ${tuple[1]}`)
+          }
         }
         if (data.length === 1) {
           data[0].levels[tuple[2]] = tuple[0]

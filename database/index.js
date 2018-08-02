@@ -113,6 +113,7 @@ let findByTitle = (title, callback) => {
 }
 
 let updateScoresForUser = (username, score, level, difficulty, title) => {
+  //not getting rid of the old score
   User.find({
     username: username,
     }, (err, data) => {
@@ -143,7 +144,6 @@ let updateScoresForUser = (username, score, level, difficulty, title) => {
           })
       }    
     })
-
 }
 
 let updateLevel = (levels, id) => {
@@ -153,8 +153,6 @@ let updateLevel = (levels, id) => {
   }, (err, data) => {
     if (err) {
       console.log("error on update level", err)
-    } else {
-      console.log("this song's levels should be updated now", id)
     }
   })
 }
