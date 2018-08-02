@@ -10,26 +10,31 @@ body {
 .beginnerTitle {
   color: blue;
   font-family: Verdana;
+  cursor: pointer;
 }
 
 .basicTitle {
   color: #DAA520;
   font-family: Verdana;
+  cursor: pointer;
 }
 
 .difficultTitle {
   color: red;
   font-family: Verdana;
+  cursor: pointer;
 }
 
 .expertTitle {
   color: green;
   font-family: Verdana;
+  cursor: pointer;
 }
 
 .challengeTitle {
   color: purple;
   font-family: Verdana;
+  cursor: pointer;
 }
 
 .filterSortContainer {
