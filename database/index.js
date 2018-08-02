@@ -118,14 +118,17 @@ let updateScoresForUser = (username, score, level, difficulty, title) => {
     username: username,
     }, (err, data) => {
       let found = false
+      let foundIndex = null
       for (let i = 0; i < data[0].scores.length; i++) {
         let currentScore = data[0].scores[i]
         if (currentScore.level === level && Number(currentScore.difficulty) === difficulty && currentScore.songTitle === title) {
           found = true
+          foundIndex = i
           break
         }
       }
       if (!found) {
+        console.log('none found')
         User.update(
           {username: username},
           { $push: 
@@ -142,7 +145,30 @@ let updateScoresForUser = (username, score, level, difficulty, title) => {
               console.log(err)
             }
           })
-      }    
+      } else {
+        const updateEntryString = `scores.${foundIndex}`
+        const updateObject = {
+          $set: {}
+        }
+        updateObject.$set[updateEntryString] = {
+          songTitle: title,
+          level: level,
+          difficulty: difficulty,
+          score: score
+        }
+        console.log(updateObject)
+        User.update(
+          {username: username},
+          updateObject, (err, data) => {
+            if (err) {
+              console.log("error updating user score", err)
+            } else {
+              console.log(data)
+              console.log('supposedly it was updated')
+            }
+          }
+        )
+      }  
     })
 }
 

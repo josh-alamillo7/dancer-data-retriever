@@ -21,7 +21,7 @@ class App extends React.Component {
       scoreInfo: null,
       percentile: null,
       level: null,
-      difficulty: null,
+      selectedDifficultyIndex: null,
       title: null,
     }
     this.handleSubmitUsernameClick = this.handleSubmitUsernameClick.bind(this)
@@ -67,7 +67,7 @@ class App extends React.Component {
   handleSongNameClick(song, level) {
     const app = this;
     axiosHelpers.fetchScoreInfo(song, level, (data) => {
-      app.setState({scoreInfo: data, difficulty: level, title: song})
+      app.setState({scoreInfo: data, selectedDifficultyIndex: level, title: song})
       if (this.state.username !== null) {
         axiosHelpers.getUserScore(app.state.username, song, level, (score) => {
         if (score === null) {
@@ -82,7 +82,7 @@ class App extends React.Component {
 
   handleSubmitScoreClick(score) {
     this.setPercentilebyScore(score);
-    axiosHelpers.putScore(this.state.username, score, this.state.level, this.state.difficulty, this.state.title)
+    axiosHelpers.putScore(this.state.username, score, this.state.level, this.state.selectedDifficultyIndex, this.state.title)
     //calculation: compare this score with scoreInfo(since they both correspond to the same song. Set the state percentile to be that)
     //the problem is that this also needs to happen if a song is clicked. But only if score Info is not null.
   }
