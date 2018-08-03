@@ -1,6 +1,47 @@
 import React from 'react';
-import InfoInput from './infoinput.jsx'
+import InfoInput from './infoinput.jsx';
+import MarvGraph from './marvgraph.jsx';
+import GradeGraph from './gradegraph.jsx';
 
+class ScoreInfo extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      displayGradeGraph: false,
+      displayMarvGraph: false
+    }
+    this.toggleGradeGraph = this.toggleGradeGraph.bind(this);
+    this.toggleMarvGraph = this.toggleMarvGraph.bind(this);
+  }
+
+  toggleGradeGraph() {
+    this.setState ({ 
+      displayGradeGraph: !this.state.displayGradeGraph
+    })
+  }
+
+  toggleMarvGraph() {
+    this.setState ({
+      displayMarvGraph: !this.state.displayMarvGraph
+    })
+  }
+
+  render() {
+    if (!this.props.scores) {
+      return (<span></span>)
+    }
+
+    return (
+      <span className = "scoreInfoContainer">
+        <button onClick={this.toggleGradeGraph}>Toggle Grade Histogram</button>
+        <GradeGraph displayGradeGraph={this.state.displayGradeGraph} />
+        <button onClick={this.toggleMarvGraph}>Toggle Marvelous Attack Histogram </button>
+        <MarvGraph displayMarvGraph={this.state.displayMarvGraph} /> 
+      </span>)
+  }
+}
+
+/*
 const ScoreInfo = ({ scores, handleSubmitScoreClick, percentile }) => {
   if (scores === null) {
     return (<div>Choose a song!</div>)
@@ -40,5 +81,6 @@ const ScoreInfo = ({ scores, handleSubmitScoreClick, percentile }) => {
     )
   }
 }
+*/
 
 export default ScoreInfo;
