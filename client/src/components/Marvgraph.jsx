@@ -50,8 +50,8 @@ const MarvGraph = ({ displayMarvGraph, scores, playerScore }) => {
 
   return (
     <XYPlot
-      width={300}
-      height={500}
+      width={500}
+      height={300}
       stackBy='y'>
       <HorizontalGridLines />
       <XAxis />
