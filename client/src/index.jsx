@@ -15,14 +15,15 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: null,
-      songs: [],
       displaySongs: [],
-      scoreInfo: null,
-      percentile: null,
       level: null,
+      percentile: null,
+      playerScore: null,
+      scoreInfo: null,
       selectedDifficultyIndex: null,
+      songs: [],
       title: null,
+      username: null
     }
     this.handleSubmitUsernameClick = this.handleSubmitUsernameClick.bind(this)
     this.handleLevelChangeClick = this.handleLevelChangeClick.bind(this)
@@ -60,7 +61,7 @@ class App extends React.Component {
   handleLevelChangeClick(level) {
     const app = this;
     axiosHelpers.fetchByLevel(level, (data) => {
-      app.setState({displaySongs: data.slice(0, 20), songs: data, level: level, scoreInfo: null, percentile: null, title: null})
+      app.setState({displaySongs: data.slice(0, 20), songs: data, level: level, scoreInfo: null, percentile: null, playerScore: null, title: null})
     })
   }
 
@@ -71,7 +72,7 @@ class App extends React.Component {
       if (this.state.username !== null) {
         axiosHelpers.getUserScore(app.state.username, song, level, (score) => {
         if (score === null) {
-          app.setState({percentile: null})
+          app.setState({percentile: null, playerScore: null})
         } else {
           app.setPercentilebyScore(Number(score))
         }        
@@ -97,7 +98,7 @@ class App extends React.Component {
       }
     }
     const percentile = Math.floor(((totalPlayers - rank) / totalPlayers) * 100);
-    this.setState({percentile: percentile})
+    this.setState({percentile: percentile, playerScore: score})
   }
 
   sortSongs(e) {
@@ -140,7 +141,7 @@ class App extends React.Component {
           </div>
           <div className = "titleAndScoreInfoContainer">
             <StatsTitle title={this.state.title} />
-            <ScoreInfo scores={this.state.scoreInfo} handleSubmitScoreClick={this.handleSubmitScoreClick} percentile={this.state.percentile}/>
+            <ScoreInfo scores={this.state.scoreInfo} handleSubmitScoreClick={this.handleSubmitScoreClick} percentile={this.state.percentile} playerScore={this.state.playerScore}/>
           </div>
         </div>
       </div>
