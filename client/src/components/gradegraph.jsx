@@ -1,7 +1,7 @@
 import React from 'react';
 
-const GradeGraph = ({ displayGradeGraph }) => {
-  if (!displayGradeGraph) {
+const GradeGraph = ({ displayGraph }) => {
+  if (displayGraph !== 'grade') {
     return (<div></div>)
   }
 

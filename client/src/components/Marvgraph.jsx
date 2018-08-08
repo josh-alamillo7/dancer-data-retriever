@@ -1,8 +1,8 @@
 import React from 'react';
 import { XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, VerticalRectSeries, VerticalRectSeriesCanvas } from 'react-vis'
 
-const MarvGraph = ({ displayMarvGraph, scores, playerScore }) => {
-  if (!displayMarvGraph) {
+const MarvGraph = ({ displayGraph, scores, playerScore }) => {
+  if (displayGraph !== 'marv') {
     return (<div></div>)
   }
 
