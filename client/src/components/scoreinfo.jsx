@@ -7,23 +7,35 @@ class ScoreInfo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      displayGradeGraph: false,
-      displayMarvGraph: false
+      graph: null
     }
     this.toggleGradeGraph = this.toggleGradeGraph.bind(this);
     this.toggleMarvGraph = this.toggleMarvGraph.bind(this);
   }
 
   toggleGradeGraph() {
-    this.setState ({ 
-      displayGradeGraph: !this.state.displayGradeGraph
-    })
+    if (this.state.graph === 'grade') {
+      this.setState({
+        graph: null
+      })
+    } else {
+      this.setState ({ 
+        graph: 'grade'
+      })
+    }
+    
   }
 
   toggleMarvGraph() {
-    this.setState ({
-      displayMarvGraph: !this.state.displayMarvGraph
-    })
+    if (this.state.graph === 'marv') {
+      this.setState({
+        graph: null
+      })
+    } else {
+      this.setState ({ 
+        graph: 'marv'
+      })
+    }
   }
 
   render() {
@@ -67,9 +79,9 @@ class ScoreInfo extends React.Component {
         </span>
         <div className = "graphsContainer">
           <button onClick={this.toggleGradeGraph}>Toggle Grade Histogram</button>
-          <GradeGraph displayGradeGraph={this.state.displayGradeGraph} />
           <button onClick={this.toggleMarvGraph}>Toggle Marvelous Attack Histogram </button>
-          <MarvGraph displayMarvGraph={this.state.displayMarvGraph} scores={this.props.scores} playerScore={this.props.playerScore} /> 
+          <GradeGraph displayGraph={this.state.graph} scores={this.props.scores} playerScore={this.props.playerScore}/>
+          <MarvGraph displayGraph={this.state.graph} scores={this.props.scores} playerScore={this.props.playerScore} /> 
         </div>
         
       </div>)
