@@ -80,7 +80,7 @@ class ScoreInfo extends React.Component {
         <div className = "graphsContainer">
           <button onClick={this.toggleGradeGraph}>Toggle Grade Histogram</button>
           <button onClick={this.toggleMarvGraph}>Toggle Marvelous Attack Histogram </button>
-          <GradeGraph displayGraph={this.state.graph} />
+          <GradeGraph displayGraph={this.state.graph} scores={this.props.scores} playerScore={this.props.playerScore}/>
           <MarvGraph displayGraph={this.state.graph} scores={this.props.scores} playerScore={this.props.playerScore} /> 
         </div>
         

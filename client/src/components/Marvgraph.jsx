@@ -48,6 +48,8 @@ const MarvGraph = ({ displayGraph, scores, playerScore }) => {
   }
   }
 
+  console.log(histogramData)
+
   return (
     <XYPlot
       width={500}
