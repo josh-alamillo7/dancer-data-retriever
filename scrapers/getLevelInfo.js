@@ -16,6 +16,7 @@ const fetchLevelInfo = (level) => {
     let difficulties = levelAndDifficultyInfo[1].split('(')[1].split(')')[0].split(',')
     //for each id, update its difficulty to be this level. Tuple contains level(number), id, difficultyCategory
     idDifficultyMap = ids.map((id, index) => [level, id, difficulties[index]])
+    //we are going to have to make idDifficultyMap
 
     idDifficultyMap.forEach((tuple, idx, map) => {
       db.findById(tuple, (data) => {
