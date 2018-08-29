@@ -10,23 +10,6 @@ const scoreRegex = /\((.*)\)/
 
 const songInfoArray = [];
 
-const getScoreArrayDescending = (string) => {
-  let scores = string.split('\'').filter((item) => {
-    return item !== '-' && item !== ',' && item !== ')' && item.length < 10
-  })
-  for (let i = 0; i < scores.length; i++) {
-    scores[i] = Number(scores[i].replace(/,/g, ''));
-  }
-  if (scores.reduce((acc, score) => {
-    return acc + score
-  }) === 0) {
-    return null
-  }
-  return scores.sort((a, b) => {
-    return b - a
-  })
-}
-
 const storeSongInfo = (id, response, title, scoresArray, totalNumberSongs) => {
   songInfo = {};
   songInfo['id'] = id;
@@ -61,7 +44,6 @@ const createInfoForSong = (id, totalNumberSongs) => {
         } else {
           songTitle = response.data.match(titleRegex)[1]
         }
-        // songScores = response.data.match(scoreArrayRegex)[1]
 
         songScoreArrayRaw = response.data.match(scoreArrayRegex)
         songScoreArray = songScoreArrayRaw.map((string) => {
@@ -73,14 +55,11 @@ const createInfoForSong = (id, totalNumberSongs) => {
           scores.sort((a, b) => {
             return b - a
           })
-          // scoresAsNumbers = scores.map((score) => {
-          //   return Number(score.replace(/,/g, ''))
-          // })
           return scores
         })
 
-
         storeSongInfo(id, response, songTitle, songScoreArray, totalNumberSongs)
+        
         if ((id + 1) % 50 === 0) {
           createInfoForSong(id + 1, totalNumberSongs)
         }
