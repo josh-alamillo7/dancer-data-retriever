@@ -1,18 +1,21 @@
 const axios = require('axios');
 const titleFixes = require('./titleFixes')
 const fs = require('fs')
+const {scrapeLevelInfo} = require('./scrapeLevelInfo')
 let titlePart;
 let currId;
 
 const titleRegex = /sMusic='(.*)'/
 const scoreArrayRegex = /dsScore.{1}sp=new Array\(.*\)/g
 const scoreRegex = /\((.*)\)/
+const idsRegex = /ddIndex.*=new.{1}Array\((.*)\)/
+const levelIndexRegex = /ddSequence=new.{1}Array\((.*)\)/
 
-const songInfoArray = [];
+const songInfoObject = {};
 
 const storeSongInfo = (id, response, title, scoresArray, totalNumberSongs) => {
   songInfo = {};
-  songInfo['id'] = id;
+  songInfo['id'] = id.toString();
   songInfo['title'] = title;
   songInfo['levels'] = [null, null, null, null, null];
   songInfo['beginnerScores'] = scoresArray[0];
@@ -21,21 +24,21 @@ const storeSongInfo = (id, response, title, scoresArray, totalNumberSongs) => {
   songInfo['expertScores'] = scoresArray[3];
   songInfo['challengeScores'] = scoresArray[4];
 
-  songInfoArray.push(songInfo)
-  if (songInfoArray.length > 0 && songInfoArray.length % 50 === 0) {
-    console.log(`stored info for ${songInfoArray.length}/totalNumberSongs songs`
+  songInfoObject[id] = songInfo
+  console.log(Object.keys(songInfoObject).length)
+  if (Object.keys(songInfoObject).length > 0 && Object.keys(songInfoObject).length % 50 === 0) {
+    console.log(`stored info for ${Object.keys(songInfoObject).length}/${totalNumberSongs} songs`)
   }
-  console.log(songInfoArray.length, totalNumberSongs)
-  if (songInfoArray.length === totalNumberSongs) {
-    console.log(songInfoArray[798])
+  if (Object.keys(songInfoObject).length === totalNumberSongs) {
+    console.log(songInfoObject[799], 'is last')
+    scrapeLevelInfo(0, songInfoObject)
   }
-  
 }
 
 const createInfoForSong = (id, totalNumberSongs) => {
 
   currId = id
-  if (currId < 800) {
+  if (currId < totalNumberSongs) {
     for (let id = currId; id < currId + 50; id++) {
       axios.get(`http://skillattack.com/sa4/music.php?index=${id}`)
       .then((response) => {
@@ -66,7 +69,6 @@ const createInfoForSong = (id, totalNumberSongs) => {
       })
       .catch((err) => {
         console.log(`Fetch failed for id ${id}`)
-        console.log(err)
         axios.get(`http://skillattack.com/sa4/music.php?index=${id}`)
         .then((response) => {
           if (titleFixes[id] !== undefined) {
@@ -77,11 +79,11 @@ const createInfoForSong = (id, totalNumberSongs) => {
           storeSongInfo(id, response, songTitle, totalNumberSongs)
         })
         .catch((err) => {
-          console.log('...fetch failed again')
+          console.log(`...fetch failed again, song ${id} likely does not exist yet`)
         })
       })
     }
   }
 }
 
-createInfoForSong(0, 800)
+createInfoForSong(0, 803)
