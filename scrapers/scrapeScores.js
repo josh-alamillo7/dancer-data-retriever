@@ -25,7 +25,6 @@ const storeSongInfo = (id, response, title, scoresArray, totalNumberSongs) => {
   songInfo['challengeScores'] = scoresArray[4];
 
   songInfoObject[id] = songInfo
-  console.log(Object.keys(songInfoObject).length)
   if (Object.keys(songInfoObject).length > 0 && Object.keys(songInfoObject).length % 50 === 0) {
     console.log(`stored info for ${Object.keys(songInfoObject).length}/${totalNumberSongs} songs`)
   }
