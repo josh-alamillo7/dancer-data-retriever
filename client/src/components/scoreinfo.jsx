@@ -52,13 +52,19 @@ class ScoreInfo extends React.Component {
 
     let infoText = `You don't appear to have a score for this song yet. Insert one below!`
     if (this.props.percentile > 90) {
-      infoText = `Your score is better than ${this.props.percentile}% of dancers. Wow! Amazing!`
+      infoText = `Your score is better than ${this.props.percentile}% of dancers. Wow! Incredible!`
+    }
+    else if (this.props.percentile > 80) {
+      infoText = `Your score is better than ${this.props.percentile}% of dancers. Impressive!`
     }
     else if (this.props.percentile > 70) {
       infoText = `Your score is better than ${this.props.percentile}% of dancers. Nice job!`
     }
     else if (this.props.percentile > 50) {
       infoText = `Your score is better than ${this.props.percentile}% of dancers. Great! Keep improving!`
+    }
+    else if (this.props.percentile > 30) {
+      infoText = `Your score is better than ${this.props.percentile}% of dancers. Getting there. Keep up the good work!`
     }
     else if (this.props.percentile !== null) {
       infoText = `Your score is better than ${this.props.percentile}% of dancers. Keep practicing, you can do it!`
