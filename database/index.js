@@ -29,8 +29,8 @@ let userSchema = mongoose.Schema({
 let Song = mongoose.model('Song', songSchema);
 let User = mongoose.model('User', userSchema);
 
-let saveSong = (songInfo, callback) => {
-  let newSong = new Song({id: songInfo.id, title: songInfo.title, banner: 'https://zenius-i-vanisher.com/simfiles/DDR%202014%20%28BETA%29/EGOISM%20440/EGOISM%20440.png', levels: songInfo.levels, scores: {}})
+let saveSong = (songInfo) => {
+  let newSong = new Song({id: songInfo.id, title: songInfo.title, levels: songInfo.levels, scores: {}})
   newSong.scores.beginnerScores = songInfo.beginnerScores
   newSong.scores.basicScores = songInfo.basicScores
   newSong.scores.difficultScores = songInfo.difficultScores
@@ -41,9 +41,11 @@ let saveSong = (songInfo, callback) => {
     if (err) {
       console.log('Error, song could not be saved', err)
     }
-    else {
-      callback(songInfo.id + 1)      
+    else {     
       console.log(`song info for ${songInfo.title} saved!`)
+      if (disconnect) {
+        mongoose.disconnect()
+      }
     }
   })
 }
