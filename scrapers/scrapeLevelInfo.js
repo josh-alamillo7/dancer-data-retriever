@@ -21,7 +21,7 @@ const scrapeLevelInfo = (level, songInfoObject) => {
       scrapeLevelInfo(level + 1, songInfoObject)
     } else {
       console.log('...done.')
-      let dataAsJson = 'module.exports = ' + JSON.stringify(songInfoObject)
+      let dataAsJson = JSON.stringify(songInfoObject)
       fs.writeFileSync('songinfo.json', dataAsJson)
     }
   })
