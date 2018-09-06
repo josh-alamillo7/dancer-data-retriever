@@ -10,10 +10,6 @@ h1 {
   font-size: 40px;
 }
 
-.allInfoContainer {
-  display: flex;
-}
-
 /*******FOR USERNAME REGION*******/
 
 .welcomeText {
@@ -32,14 +28,6 @@ h1 {
 
 .clicksContainer {
   padding-top: 15px;
-}
-
-.titleAndScoreInfoContainer {
-  padding-top: 15px;
-}
-
-.songListContainer {
-  padding-left: 20px;
 }
 
 .statsInfo {
@@ -95,7 +83,16 @@ h1 {
   font-weight: bold;
 }
 
+/*******CONTAINER FOR SONG CLICKS AND SONG INFO***********/
+.allInfoContainer {
+  display: flex;
+}
+
 /*******FOR SONG CLICKS*******/
+
+.songListContainer {
+  padding-left: 20px;
+}
 
 .beginnerTitle:hover {
   font-weight: bold;
@@ -154,12 +151,23 @@ h1 {
 
 /*********FOR NAV CLICKS*********/
 
-.navClickButton {
+.backClickButton {
   font-size: 18px;
+  float: left;
 }
 
-.scoreInfoContainer {
+.forwardClickButton {
+  font-size: 18px;
   float: right;
+}
+
+/*********FOR SCORE INFO*********/
+
+.titleAndScoreInfoContainer {
+  border-style: solid;
+  float: right;
+  padding-top: 15px;
   padding-left: 30px;
   padding-right: 40px;
+  border-width: 5px;
 }

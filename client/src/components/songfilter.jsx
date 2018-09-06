@@ -18,7 +18,7 @@ class SongFilter extends React.Component {
   render() {
     return (
       <input type="text" className="filterInput" value={this.state.value} onChange={this.handleFilterInputChange} />
-      )
+    )
   }
 }
 
