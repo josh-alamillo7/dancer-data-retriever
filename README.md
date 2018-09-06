@@ -4,18 +4,12 @@ An app for competitive DDR players that converts data from skillattack.com into 
 ## how to run
 1. Run ```npm install``` from the root directory in your terminal
 2. Open two new terminal windows and start ```mongo``` and ```mongod```
-3. Run ```npm start```
-4. From root directory:  ```npm run build```
-5. ```npm run get-scores```
-6. ```npm run get-levels```
-7. Type localhost:7000 into your browser.
-8. Choose a name and get started!
+3. From project directory:  ```npm run seed```, will take about 20 seconds and alert you when it's done.
+4. From project directory:  ```npm start```
+5. Type localhost:7000 into your browser.
+6. Choose a name and get started!
 
-![alt text](https://i.imgur.com/BpyLHui.png)
+![alt text](https://i.imgur.com/kvzosbB.png)
 
 ### to do:
-1. Implement sorting by player score
-2. Add user authentication
-3. Allow users to add other users as rivals
-
-
+1. Deployment coming soon!
