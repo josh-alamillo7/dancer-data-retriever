@@ -3,8 +3,21 @@ body {
   background-size: 1500px 900px;
 }
 
+/******FOR THE APP TITLE*********/
+
+h1 {
+  font-family: 'Passion One', cursive;
+  font-size: 40px;
+}
+
 .allInfoContainer {
   display: flex;
+}
+
+/*******FOR USERNAME REGION*******/
+
+.welcomeText {
+  font-family: 'Asap Condensed', sans-serif;
 }
 
 /*******FOR SONG CLICKS*******/

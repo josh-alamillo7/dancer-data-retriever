@@ -5,7 +5,7 @@ const UsernameText = ({ username , handleSubmitUsernameClick }) => {
   if (username === null) {
     return (
     <div>
-      <div>Hi there, what's your name?</div>
+      <p className='welcomeText'>Hi there, what's your name?</p>
       <UsernameInput handleSubmitUsernameClick={handleSubmitUsernameClick}/>
     </div>
     )
@@ -13,12 +13,10 @@ const UsernameText = ({ username , handleSubmitUsernameClick }) => {
   else {
     return (
     <div>
-      <div>
-          <div>Welcome, {username}! Compare your scores here with the DDR community =). Let's get dancing!</div>
-          <div>If you meant to choose a different username, please re-enter it below:</div>
-          <UsernameInput handleSubmitUsernameClick={handleSubmitUsernameClick}/>
-      </div>
-        <div>Otherwise, choose a level and get comparing!</div>
+      <p className='welcomeText'>Welcome, {username}! Compare your scores here with the DDR community 😃. Let's get dancing! <br/>
+      If you meant to choose a different username, please re-enter it below:</p>
+      <UsernameInput handleSubmitUsernameClick={handleSubmitUsernameClick}/>
+      <p>Otherwise, choose a level and get comparing!</p>
     </div>
     )
   }
