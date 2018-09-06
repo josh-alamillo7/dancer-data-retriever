@@ -127,7 +127,7 @@ class App extends React.Component {
         <h1>Dancer Data Retriever ⬅️ ⬇️ ⬆️ ➡️</h1>
         <UsernameText username={this.state.username} handleSubmitUsernameClick={this.handleSubmitUsernameClick} />
         <h2>Choose a level:</h2>
-        <LevelClicks handleLevelChangeClick={this.handleLevelChangeClick} />
+        <LevelClicks handleLevelChangeClick={this.handleLevelChangeClick} selectedLevel={this.state.level} />
         <div className = "filterSortContainer">
           <span>Filter by name: </span>
           <SongFilter filterSongs={this.filterSongs} />

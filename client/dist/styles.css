@@ -3,9 +3,30 @@ body {
   background-size: 1500px 900px;
 }
 
+/******FOR THE APP TITLE*********/
+
+h1 {
+  font-family: 'Passion One', cursive;
+  font-size: 40px;
+}
+
 .allInfoContainer {
   display: flex;
 }
+
+/*******FOR USERNAME REGION*******/
+
+.welcomeText {
+  font-family: 'Asap Condensed', sans-serif;
+  font-size: 22px;
+}
+
+.usernameInput {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+/*******FOR SONG CLICKS*******/
 
 .beginnerTitle {
   color: blue;
@@ -49,11 +70,6 @@ body {
   padding-top: 15px;
 }
 
-.usernameInput {
-  padding-top: 15px;
-  padding-bottom: 8px;
-}
-
 .songListContainer {
   padding-left: 20px;
 }
@@ -61,6 +77,54 @@ body {
 .statsInfo {
   font-weight: bold;
   font-size: 22px;
+}
+
+/**********FOR LEVEL CLICKS***********/
+
+.levelButtonContainer {
+  padding-right: 3px;
+}
+
+.levelButton {
+  -moz-box-shadow: 3px 3px 0px 0px #899599;
+  -webkit-box-shadow: 3px 3px 0px 0px #899599;
+  box-shadow: 3px 3px 0px 0px #899599;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #bab1ba));
+  background:-moz-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+  background:-webkit-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+  background:-o-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+  background:-ms-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+  background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+  -moz-border-radius:25px;
+  -webkit-border-radius:25px;
+  border-radius:25px;
+  border:1px solid #d6bcd6;
+  display:inline-block;
+  cursor:pointer;
+  color:#3a8a9e;
+  font-family:Arial;
+  font-size:11px;
+  padding:7px 7px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #e1e2ed;
+}
+
+.levelButton:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bab1ba), color-stop(1, #ededed));
+  background:-moz-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+  background:-webkit-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+  background:-o-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+  background:-ms-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+  background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+  background-color:#bab1ba;
+}
+
+#selectedButton {
+  font-size: 16px;
+  color: #b8860b;
+  font-weight: bold;
 }
 
 .navClickButton {
