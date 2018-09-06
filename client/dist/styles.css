@@ -18,6 +18,12 @@ h1 {
 
 .welcomeText {
   font-family: 'Asap Condensed', sans-serif;
+  font-size: 22px;
+}
+
+.usernameInput {
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 /*******FOR SONG CLICKS*******/
@@ -62,11 +68,6 @@ h1 {
 
 .titleAndScoreInfoContainer {
   padding-top: 15px;
-}
-
-.usernameInput {
-  padding-top: 15px;
-  padding-bottom: 8px;
 }
 
 .songListContainer {
