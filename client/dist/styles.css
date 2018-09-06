@@ -26,38 +26,6 @@ h1 {
   padding-bottom: 8px;
 }
 
-/*******FOR SONG CLICKS*******/
-
-.beginnerTitle {
-  color: blue;
-  font-family: Verdana;
-  cursor: pointer;
-}
-
-.basicTitle {
-  color: #DAA520;
-  font-family: Verdana;
-  cursor: pointer;
-}
-
-.difficultTitle {
-  color: red;
-  font-family: Verdana;
-  cursor: pointer;
-}
-
-.expertTitle {
-  color: green;
-  font-family: Verdana;
-  cursor: pointer;
-}
-
-.challengeTitle {
-  color: purple;
-  font-family: Verdana;
-  cursor: pointer;
-}
-
 .filterSortContainer {
   padding-top: 10px;
 }
@@ -126,6 +94,65 @@ h1 {
   color: #b8860b;
   font-weight: bold;
 }
+
+/*******FOR SONG CLICKS*******/
+
+.beginnerTitle:hover {
+  font-weight: bold;
+}
+
+.basicTitle:hover {
+  font-weight: bold;
+}
+
+.difficultTitle:hover {
+  font-weight: bold;
+}
+
+.expertTitle:hover {
+  font-weight: bold;
+}
+
+.challengeTitle:hover {
+  font-weight: bold;
+}
+
+.beginnerTitle {
+  color: blue;
+  font-family: Verdana;
+  cursor: pointer;
+  text-align: center;
+}
+
+.basicTitle {
+  color: #DAA520;
+  font-family: Verdana;
+  cursor: pointer;
+  text-align: center;
+}
+
+.difficultTitle {
+  color: red;
+  font-family: Verdana;
+  cursor: pointer;
+  text-align: center;
+}
+
+.expertTitle {
+  color: green;
+  font-family: Verdana;
+  cursor: pointer;
+  text-align: center;
+}
+
+.challengeTitle {
+  color: purple;
+  font-family: Verdana;
+  cursor: pointer;
+  text-align: center;
+}
+
+/*********FOR NAV CLICKS*********/
 
 .navClickButton {
   font-size: 18px;
