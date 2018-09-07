@@ -29,6 +29,16 @@ let userSchema = mongoose.Schema({
 let Song = mongoose.model('Song', songSchema);
 let User = mongoose.model('User', userSchema);
 
+let clearAllSongs = (callback) => {
+  Song.remove({}, function(err) {
+    if (err) {
+      console.log('could not remove songs')
+    } else {
+      callback()
+    }
+  })
+}
+
 let saveSong = (songInfo) => {
   let newSong = new Song({id: songInfo.id, title: songInfo.title, levels: songInfo.levels, scores: {}})
   newSong.scores.beginnerScores = songInfo.beginnerScores
@@ -217,3 +227,4 @@ module.exports.findByTitle = findByTitle;
 module.exports.updateLevel = updateLevel;
 module.exports.checkIfUserExists = checkIfUserExists
 module.exports.findAllByLevel = findAllByLevel;
+module.exports.clearAllSongs = clearAllSongs;
