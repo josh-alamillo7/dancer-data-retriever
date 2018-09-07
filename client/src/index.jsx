@@ -50,7 +50,7 @@ class App extends React.Component {
   }
 
   handleForwardClick() {
-    if (filteredSongs.length === 0) {
+    if (this.state.filteredSongs.length === 0) {
       const firstIndexDisplayed = this.state.songs.indexOf(this.state.displaySongs[0])
       this.setState({displaySongs: this.state.songs.slice(firstIndexDisplayed + 20, firstIndexDisplayed + 40)})
     } else {
@@ -60,7 +60,7 @@ class App extends React.Component {
   }
 
   handleBackwardsClick() {
-    if (filteredSongs.length === 0) {
+    if (this.state.filteredSongs.length === 0) {
       const firstIndexDisplayed = this.state.songs.indexOf(this.state.displaySongs[0])
       this.setState({displaySongs: this.state.songs.slice(firstIndexDisplayed - 20, firstIndexDisplayed)})
     } else {

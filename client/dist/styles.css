@@ -83,9 +83,11 @@ h1 {
   font-weight: bold;
 }
 
-/*******CONTAINER FOR SONG CLICKS AND SONG INFO***********/
+/*******CONTAINER FOR SONG CLICKS, NAV CLICKS, AND SONG INFO***********/
 .allInfoContainer {
   display: flex;
+  height: 500px;
+  width: 1200px;
 }
 
 /*******FOR SONG CLICKS*******/
@@ -151,6 +153,18 @@ h1 {
 
 /*********FOR NAV CLICKS*********/
 
+.clicksContainer {
+  width: 400px;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.navClicks {
+  float: bottom;
+}
+
 .backClickButton {
   font-size: 18px;
   float: left;
@@ -163,11 +177,13 @@ h1 {
 
 /*********FOR SCORE INFO*********/
 
+
+
 .titleAndScoreInfoContainer {
-  border-style: solid;
-  float: right;
+  float: left;
+  width: 800px;
   padding-top: 15px;
   padding-left: 30px;
   padding-right: 40px;
-  border-width: 5px;
+  
 }
