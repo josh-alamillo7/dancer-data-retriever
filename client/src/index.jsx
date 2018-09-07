@@ -16,6 +16,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       displaySongs: [],
+      filteredSongs: [],
       level: null,
       percentile: null,
       playerScore: null,
@@ -37,21 +38,35 @@ class App extends React.Component {
   }
 
   filterSongs(value) {
-    let filteredSongs = this.state.songs.filter(song => {
-      let lowerCaseSong = song[0].toLowerCase()
-      return lowerCaseSong.includes(value.toLowerCase())
-    })
-    this.setState({displaySongs: filteredSongs})
+    if (value === '') {
+      app.setState({filteredSongs: [], displaySongs: this.state.songs.slice(0, 20)})
+    } else {
+        let filteredSongs = this.state.songs.filter(song => {
+        let lowerCaseSong = song[0].toLowerCase()
+        return lowerCaseSong.includes(value.toLowerCase())
+      })
+      this.setState({filteredSongs: filteredSongs, displaySongs: filteredSongs.slice(0, 20)})
+    }
   }
 
   handleForwardClick() {
-    const firstIndexDisplayed = this.state.songs.indexOf(this.state.displaySongs[0])
-    this.setState({displaySongs: this.state.songs.slice(firstIndexDisplayed + 20, firstIndexDisplayed + 40)})
+    if (this.state.filteredSongs.length === 0) {
+      const firstIndexDisplayed = this.state.songs.indexOf(this.state.displaySongs[0])
+      this.setState({displaySongs: this.state.songs.slice(firstIndexDisplayed + 20, firstIndexDisplayed + 40)})
+    } else {
+      const firstIndexDisplayed = this.state.filteredSongs.indexOf(this.state.displaySongs[0])
+      this.setState({displaySongs: this.state.filteredSongs.slice(firstIndexDisplayed + 20, firstIndexDisplayed + 40)})
+    }
   }
 
   handleBackwardsClick() {
-    const firstIndexDisplayed = this.state.songs.indexOf(this.state.displaySongs[0])
-    this.setState({displaySongs: this.state.songs.slice(firstIndexDisplayed - 20, firstIndexDisplayed)})
+    if (this.state.filteredSongs.length === 0) {
+      const firstIndexDisplayed = this.state.songs.indexOf(this.state.displaySongs[0])
+      this.setState({displaySongs: this.state.songs.slice(firstIndexDisplayed - 20, firstIndexDisplayed)})
+    } else {
+      const firstIndexDisplayed = this.state.filteredSongs.indexOf(this.state.displaySongs[0])
+      this.setState({displaySongs: this.state.filteredSongs.slice(firstIndexDisplayed - 20, firstIndexDisplayed)})
+    }
   }
 
   handleSubmitUsernameClick(value) {

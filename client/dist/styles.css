@@ -10,10 +10,6 @@ h1 {
   font-size: 40px;
 }
 
-.allInfoContainer {
-  display: flex;
-}
-
 /*******FOR USERNAME REGION*******/
 
 .welcomeText {
@@ -26,52 +22,12 @@ h1 {
   padding-bottom: 8px;
 }
 
-/*******FOR SONG CLICKS*******/
-
-.beginnerTitle {
-  color: blue;
-  font-family: Verdana;
-  cursor: pointer;
-}
-
-.basicTitle {
-  color: #DAA520;
-  font-family: Verdana;
-  cursor: pointer;
-}
-
-.difficultTitle {
-  color: red;
-  font-family: Verdana;
-  cursor: pointer;
-}
-
-.expertTitle {
-  color: green;
-  font-family: Verdana;
-  cursor: pointer;
-}
-
-.challengeTitle {
-  color: purple;
-  font-family: Verdana;
-  cursor: pointer;
-}
-
 .filterSortContainer {
   padding-top: 10px;
 }
 
 .clicksContainer {
   padding-top: 15px;
-}
-
-.titleAndScoreInfoContainer {
-  padding-top: 15px;
-}
-
-.songListContainer {
-  padding-left: 20px;
 }
 
 .statsInfo {
@@ -127,12 +83,107 @@ h1 {
   font-weight: bold;
 }
 
-.navClickButton {
-  font-size: 18px;
+/*******CONTAINER FOR SONG CLICKS, NAV CLICKS, AND SONG INFO***********/
+.allInfoContainer {
+  display: flex;
+  height: 500px;
+  width: 1200px;
 }
 
-.scoreInfoContainer {
+/*******FOR SONG CLICKS*******/
+
+.songListContainer {
+  padding-left: 20px;
+}
+
+.beginnerTitle:hover {
+  font-weight: bold;
+}
+
+.basicTitle:hover {
+  font-weight: bold;
+}
+
+.difficultTitle:hover {
+  font-weight: bold;
+}
+
+.expertTitle:hover {
+  font-weight: bold;
+}
+
+.challengeTitle:hover {
+  font-weight: bold;
+}
+
+.beginnerTitle {
+  color: blue;
+  font-family: Verdana;
+  cursor: pointer;
+  text-align: center;
+}
+
+.basicTitle {
+  color: #DAA520;
+  font-family: Verdana;
+  cursor: pointer;
+  text-align: center;
+}
+
+.difficultTitle {
+  color: red;
+  font-family: Verdana;
+  cursor: pointer;
+  text-align: center;
+}
+
+.expertTitle {
+  color: green;
+  font-family: Verdana;
+  cursor: pointer;
+  text-align: center;
+}
+
+.challengeTitle {
+  color: purple;
+  font-family: Verdana;
+  cursor: pointer;
+  text-align: center;
+}
+
+/*********FOR NAV CLICKS*********/
+
+.clicksContainer {
+  width: 400px;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.navClicks {
+  float: bottom;
+}
+
+.backClickButton {
+  font-size: 18px;
+  float: left;
+}
+
+.forwardClickButton {
+  font-size: 18px;
   float: right;
+}
+
+/*********FOR SCORE INFO*********/
+
+
+
+.titleAndScoreInfoContainer {
+  float: left;
+  width: 800px;
+  padding-top: 15px;
   padding-left: 30px;
   padding-right: 40px;
+  
 }

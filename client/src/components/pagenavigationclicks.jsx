@@ -7,18 +7,22 @@ const PageNavigationClicks = ({ handleBackwardsClick, handleForwardClick, songs,
 
   if (boolNextButton && boolPreviousButton) {
     return (
-    <div>
-      <button onClick={handleBackwardsClick} className="navClickButton">Prev 20 songs</button>
-      <button onClick={handleForwardClick} className="navClickButton">Next 20 songs</button>
+    <div className='navClicks'>
+      <button onClick={handleBackwardsClick} className="backClickButton">Prev 20 songs</button>
+      <button onClick={handleForwardClick} className="forwardClickButton">Next 20 songs</button>
     </div>
   )
   } else if (boolPreviousButton) {
     return (
-      <button onClick={handleBackwardsClick} className="navClickButton">Prev 20 songs</button>
+      <div className='navClicks'>
+      <button onClick={handleBackwardsClick} className="backClickButton">Prev 20 songs</button>
+      </div>
       )
   } else if (boolNextButton) {
     return (
-      <button onClick={handleForwardClick} className="navClickButton">Next 20 songs</button>)
+      <div className='navClicks'>
+      <button onClick={handleForwardClick} className="forwardClickButton">Next 20 songs</button>
+      </div>)
   }
   else {
     return (<div></div>)
