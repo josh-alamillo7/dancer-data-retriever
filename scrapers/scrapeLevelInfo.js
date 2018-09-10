@@ -22,7 +22,7 @@ const scrapeLevelInfo = (level, songInfoObject) => {
     } else {
       console.log('...done.')
       let dataAsJson = JSON.stringify(songInfoObject)
-      fs.writeFileSync('songinfo.json', dataAsJson)
+      fs.writeFileSync('./scrapers/songinfo.json', dataAsJson)
     }
   })
   .catch((err) => {
