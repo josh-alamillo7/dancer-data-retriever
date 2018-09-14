@@ -118,7 +118,6 @@ class App extends React.Component {
 
   sortSongs(e) {
     const app = this
-
     switch (e.target.id) {
       case 'ABCSort':
         sorts.ABCSort(this.state.songs)
@@ -126,14 +125,19 @@ class App extends React.Component {
         break;
 
       case 'PFCSort':
-        sorts.PFCSort(this.state.songs).then((sortedArray) => {
+        sorts.gradeSort(this.state.songs, true).then((sortedArray) => {
           app.setState({songs: sortedArray, displaySongs: sortedArray.slice(0, 20)})
         }).catch((err) => {
           console.log(err)
         })
         break;
+      case 'AAASort':
+        sorts.gradeSort(this.state.songs, false).then((sortedArray) => {
+          app.setState({songs: sortedArray, displaySongs: sortedArray.slice(0, 20)})
+        }).catch((err) => {
+          console.log(err)
+        })
     }
-    
   }
 
   render() {
