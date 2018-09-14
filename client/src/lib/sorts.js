@@ -5,13 +5,14 @@ const ABCSort = (array) => {
   array.sort()
 }
 
-const genPFCMap = (songs) => {
+const genPFCMap = (songs, pfcSort) => {
+  const scoreThreshold = pfcSort ? 999000 : 990000
   return new Promise((resolve, reject) => {
     const output = [];
     songs.forEach((song, index, array) => {
       axiosHelpers.fetchScoreInfo(song[0], song[1], (data) => {
         let pfcNumber = data.filter((score) => {
-          return score > 999000;
+          return score >= scoreThreshold;
         }).length
         let pfcPercent = (pfcNumber / data.length) * 100.0;
         output.push([pfcPercent, song])
@@ -23,9 +24,9 @@ const genPFCMap = (songs) => {
   })
 }
 
-const PFCSort = (songs) => {
+const gradeSort = (songs, pfcSort) => {
   return new Promise((resolve, reject) => {
-    genPFCMap(songs).then((tuples) => {
+    genPFCMap(songs, pfcSort).then((tuples) => {
       tuples = INSERTiONSort(tuples)
       tuples = tuples.reverse()
       const map = tuples.map((tuple) => {
@@ -63,4 +64,4 @@ const INSERTiONSort = (songs) => {
 
 
 module.exports.ABCSort = ABCSort
-module.exports.PFCSort = PFCSort
+module.exports.gradeSort = gradeSort
