@@ -9,7 +9,7 @@ An app for competitive DDR players that converts data from skillattack.com into 
 5. Type localhost:7000 into your browser.
 6. Choose a name and get started!
 
-![alt text](https://i.imgur.com/kvzosbB.png)
+![alt text](https://i.imgur.com/YU9Q453.png)
 
 ### to do:
 1. Deployment coming soon!
