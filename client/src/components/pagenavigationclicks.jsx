@@ -1,9 +1,17 @@
 import React from 'react';
 
-const PageNavigationClicks = ({ handleBackwardsClick, handleForwardClick, songs, displaySongs }) => {
+const PageNavigationClicks = ({ handleBackwardsClick, handleForwardClick, songs, displaySongs, filteredSongs }) => {
+  let boolNextButton;
+  let boolPreviousButton;
 
-  const boolNextButton = displaySongs && songs && songs[songs.length - 1] !== displaySongs[displaySongs.length - 1]
-  const boolPreviousButton = displaySongs && songs && displaySongs[0] !== songs[0]
+  if (filteredSongs.length > 0) {
+    boolNextButton = filteredSongs.length && displaySongs.length && displaySongs[displaySongs.length - 1] !== filteredSongs[filteredSongs.length - 1];
+    boolPreviousButton = filteredSongs.length && displaySongs.length && displaySongs[0] !== filteredSongs[0];
+  } else {
+    boolNextButton = displaySongs.length && songs.length && songs[songs.length - 1] !== displaySongs[displaySongs.length - 1];
+    boolPreviousButton = displaySongs.length && songs.length && displaySongs[0] !== songs[0];
+  }
+  
 
   if (boolNextButton && boolPreviousButton) {
     return (
