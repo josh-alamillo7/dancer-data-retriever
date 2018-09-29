@@ -39,12 +39,15 @@ class App extends React.Component {
 
   filterSongs(value) {
     if (value === '') {
-      app.setState({filteredSongs: [], displaySongs: this.state.songs.slice(0, 20)})
+      this.setState({filteredSongs: [], displaySongs: this.state.songs.slice(0, 20)})
     } else {
+      console.log('SONGS', this.state.songs)
         let filteredSongs = this.state.songs.filter(song => {
+          console.log(song)
         let lowerCaseSong = song[0].toLowerCase()
         return lowerCaseSong.includes(value.toLowerCase())
       })
+        console.log(filteredSongs)
       this.setState({filteredSongs: filteredSongs, displaySongs: filteredSongs.slice(0, 20)})
     }
   }
@@ -76,7 +79,7 @@ class App extends React.Component {
   handleLevelChangeClick(level) {
     const app = this;
     axiosHelpers.fetchByLevel(level, (data) => {
-      app.setState({displaySongs: data.slice(0, 20), songs: data, level: level, scoreInfo: null, percentile: null, playerScore: null, title: null})
+      app.setState({displaySongs: data.slice(0, 20), filteredSongs: [], songs: data, level: level, scoreInfo: null, percentile: null, playerScore: null, title: null})
     })
   }
 
