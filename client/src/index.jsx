@@ -41,13 +41,10 @@ class App extends React.Component {
     if (value === '') {
       this.setState({filteredSongs: [], displaySongs: this.state.songs.slice(0, 20)})
     } else {
-      console.log('SONGS', this.state.songs)
         let filteredSongs = this.state.songs.filter(song => {
-          console.log(song)
         let lowerCaseSong = song[0].toLowerCase()
         return lowerCaseSong.includes(value.toLowerCase())
       })
-        console.log(filteredSongs)
       this.setState({filteredSongs: filteredSongs, displaySongs: filteredSongs.slice(0, 20)})
     }
   }
@@ -159,7 +156,8 @@ class App extends React.Component {
         <div className = "allInfoContainer">
           <div className = "clicksContainer">
             <SongList songs={this.state.displaySongs} handleSongNameClick={this.handleSongNameClick}/>
-            <PageNavigationClicks handleBackwardsClick={this.handleBackwardsClick} handleForwardClick={this.handleForwardClick} songs={this.state.songs} displaySongs={this.state.displaySongs}/> 
+            <PageNavigationClicks handleBackwardsClick={this.handleBackwardsClick} handleForwardClick={this.handleForwardClick} 
+            filteredSongs={this.state.filteredSongs} songs={this.state.songs} displaySongs={this.state.displaySongs}/> 
           </div>
           <div className = "titleAndScoreInfoContainer">
             <StatsTitle title={this.state.title} />
