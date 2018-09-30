@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+const {MONGO_URI} = require('../config/config.js')
 
-mongoose.connect('mongodb://localhost/mvpddr');
+//'mongodb://localhost/mvpddr'
+mongoose.connect(MONGO_URI);
 
 let songSchema = mongoose.Schema({
   id: Number,

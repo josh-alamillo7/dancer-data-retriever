@@ -1,6 +1,6 @@
 const express = require('express')
 const app = require('./index.js')
-//const db = require('../database/index.js')
+const db = require('../database/index.js')
 
 app.get('/songs/:level', (req, res) => {
   db.findAllByLevel(Number(req.params.level), (data) => {  
