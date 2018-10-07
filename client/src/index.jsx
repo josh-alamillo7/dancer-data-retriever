@@ -83,9 +83,7 @@ class App extends React.Component {
 
   handleSongNameClick(song, level) {
     const app = this;
-    console.log({level})
     axiosHelpers.fetchScoreInfo(song, level, (data) => {
-      console.log(data)
       app.setState({scoreInfo: data, selectedDifficultyIndex: level, title: song})
       if (this.state.username !== null) {
         axiosHelpers.getUserScore(app.state.username, song, level, (score) => {
