@@ -13,12 +13,11 @@ db.clearAllSongs(function() {
         if (level !== null) {
           let songInfoTuple = [songInfo[i].title, index];
           infoByLevel[level] = infoByLevel[level] ? infoByLevel[level].concat([songInfoTuple]) : [songInfoTuple];
-        }
-        
+        }  
       }) 
       if (i === Object.keys(songInfo).length - 1) {
         Object.keys(infoByLevel).forEach((level) => {
-          db.saveLevel(Object.keys(infoByLevel)[i], infoByLevel[level])
+          db.saveLevel(level, infoByLevel[level])
         })
       }
     }   

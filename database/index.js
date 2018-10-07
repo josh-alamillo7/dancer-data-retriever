@@ -116,14 +116,14 @@ let saveUser = (username, score, level, difficulty, title) => {
 
 let saveLevel = (number, songsForLevel) => {
   let newLevel = new Level({
-    number: number,
+    number: Number(number),
     songs: songsForLevel
   })
   newLevel.save((err) => {
     if (err) {
       console.log('The level information could not be saved', err)
     } else {
-      console.log('level saved.')
+      console.log(`level ${number} saved.`)
     }
   })
 }
