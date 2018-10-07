@@ -86,11 +86,18 @@ let saveAllSongs = (songInfo, callback) => {
 }
 
 let findAllByLevel = (level, callback) => {
-  Song.find({"levels": level}, (err, data) => {
+  // Song.find({"levels": level}, (err, data) => {
+  //   if (err) {
+  //     console.log("Something went wrong, could not complete level fetch")
+  //   } else {
+  //     callback(data)
+  //   }
+  // })
+  Level.find({"number": number}, (err, data) => {
     if (err) {
-      console.log("Something went wrong, could not complete level fetch")
+      console.log('could not complete level fetch')
     } else {
-      callback(data)
+      callback(data[0].songs)
     }
   })
 }
