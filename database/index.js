@@ -28,20 +28,32 @@ let userSchema = mongoose.Schema({
   }]
 })
 
+let levelSchema = mongoose.Schema({
+  number: Number,
+  songs: Array
+})
+
 let Song = mongoose.model('Song', songSchema);
 let User = mongoose.model('User', userSchema);
+let Level = mongoose.model('Level', levelSchema);
 
 let clearAllSongs = (callback) => {
   Song.remove({}, function(err) {
     if (err) {
       console.log('could not remove songs')
     } else {
-      callback()
+      Level.remove({}, function(err) {
+        if (err) {
+          console.log('could not remove levels')
+        } else {
+          callback()
+        }
+      }) 
     }
   })
 }
 
-let saveSong = (songInfo) => {
+let saveSong = (songInfo, callback) => {
   let newSong = new Song({id: songInfo.id, title: songInfo.title, levels: songInfo.levels, scores: {}})
   newSong.scores.beginnerScores = songInfo.beginnerScores
   newSong.scores.basicScores = songInfo.basicScores
@@ -53,12 +65,23 @@ let saveSong = (songInfo) => {
     if (err) {
       console.log('Error, song could not be saved', err)
     }
-    else {     
+    else { 
+      callback();    
       console.log(`song info for ${songInfo.title} saved!`)
-      if (disconnect) {
-        mongoose.disconnect()
-      }
     }
+  })
+}
+
+let saveAllSongs = (songInfo, callback) => {
+  let saveCount = 0;
+  Object.keys(songInfo).forEach((index) => {
+    let oneSongInfo = songInfo[index];
+    saveSong(oneSongInfo, () => {
+      saveCount++;
+      if (saveCount === Object.keys(songInfo).length) {
+        callback()
+      }
+    })
   })
 }
 
@@ -87,6 +110,20 @@ let saveUser = (username, score, level, difficulty, title) => {
       console.log('Error, user could not be saved', err)
     } else {
       console.log('new user made!')
+    }
+  })
+}
+
+let saveLevel = (number, songsForLevel) => {
+  let newLevel = new Level({
+    number: number,
+    songs: songsForLevel
+  })
+  newLevel.save((err) => {
+    if (err) {
+      console.log('The level information could not be saved', err)
+    } else {
+      console.log('level saved.')
     }
   })
 }
@@ -170,7 +207,6 @@ let updateScoresForUser = (username, score, level, difficulty, title) => {
           difficulty: difficulty,
           score: score
         }
-        console.log(updateObject)
         User.update(
           {username: username},
           updateObject, (err, data) => {
@@ -178,7 +214,6 @@ let updateScoresForUser = (username, score, level, difficulty, title) => {
               console.log("error updating user score", err)
             } else {
               console.log(data)
-              console.log('supposedly it was updated')
             }
           }
         )
@@ -222,6 +257,7 @@ module.exports.Song = Song;
 module.exports.User = User;
 module.exports.updateScoresForUser = updateScoresForUser;
 module.exports.saveSong = saveSong;
+module.exports.saveAllSongs = saveAllSongs;
 module.exports.saveUser = saveUser;
 module.exports.findById = findById;
 module.exports.getUserInfo = getUserInfo;
@@ -229,4 +265,5 @@ module.exports.findByTitle = findByTitle;
 module.exports.updateLevel = updateLevel;
 module.exports.checkIfUserExists = checkIfUserExists
 module.exports.findAllByLevel = findAllByLevel;
+module.exports.saveLevel = saveLevel;
 module.exports.clearAllSongs = clearAllSongs;
