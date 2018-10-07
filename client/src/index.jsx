@@ -24,25 +24,26 @@ class App extends React.Component {
       selectedDifficultyIndex: null,
       songs: [],
       title: null,
-      username: null
-    }
-    this.handleSubmitUsernameClick = this.handleSubmitUsernameClick.bind(this)
-    this.handleLevelChangeClick = this.handleLevelChangeClick.bind(this)
-    this.handleSongNameClick = this.handleSongNameClick.bind(this)
-    this.handleSubmitScoreClick = this.handleSubmitScoreClick.bind(this)
-    this.setPercentilebyScore = this.setPercentilebyScore.bind(this)
-    this.filterSongs = this.filterSongs.bind(this)
-    this.sortSongs = this.sortSongs.bind(this)
-    this.handleForwardClick = this.handleForwardClick.bind(this)
-    this.handleBackwardsClick = this.handleBackwardsClick.bind(this)
+      username: null,
+    };
+    this.filterSongs = this.filterSongs.bind(this);
+    this.handleSubmitUsernameClick = this.handleSubmitUsernameClick.bind(this);
+    this.handleLevelChangeClick = this.handleLevelChangeClick.bind(this);
+    this.handleSongNameClick = this.handleSongNameClick.bind(this);
+    this.handleSubmitScoreClick = this.handleSubmitScoreClick.bind(this);
+    this.setPercentilebyScore = this.setPercentilebyScore.bind(this);
+    this.sortSongs = this.sortSongs.bind(this);
+    this.handleForwardClick = this.handleForwardClick.bind(this);
+    this.handleBackwardsClick = this.handleBackwardsClick.bind(this);
   }
 
   filterSongs(value) {
+    const { songs } = this.state;
     if (value === '') {
-      this.setState({filteredSongs: [], displaySongs: this.state.songs.slice(0, 20)})
+      this.setState({filteredSongs: [], displaySongs: songs.slice(0, 20)})
     } else {
-        let filteredSongs = this.state.songs.filter(song => {
-        let lowerCaseSong = song[0].toLowerCase()
+        const filteredSongs = songs.filter(song => {
+        const lowerCaseSong = song[0].toLowerCase()
         return lowerCaseSong.includes(value.toLowerCase())
       })
       this.setState({filteredSongs: filteredSongs, displaySongs: filteredSongs.slice(0, 20)})
@@ -50,34 +51,35 @@ class App extends React.Component {
   }
 
   handleForwardClick() {
-    if (this.state.filteredSongs.length === 0) {
-      const firstIndexDisplayed = this.state.songs.indexOf(this.state.displaySongs[0])
-      this.setState({displaySongs: this.state.songs.slice(firstIndexDisplayed + 20, firstIndexDisplayed + 40)})
+    const { filteredSongs, songs, displaySongs } = this.state;
+    if (filteredSongs.length === 0) {
+      const firstIndexDisplayed = songs.indexOf(displaySongs[0]);
+      this.setState({ displaySongs: songs.slice(firstIndexDisplayed + 20, firstIndexDisplayed + 40) });
     } else {
-      const firstIndexDisplayed = this.state.filteredSongs.indexOf(this.state.displaySongs[0])
-      this.setState({displaySongs: this.state.filteredSongs.slice(firstIndexDisplayed + 20, firstIndexDisplayed + 40)})
+      const firstIndexDisplayed = filteredSongs.indexOf(displaySongs[0]);
+      this.setState({ displaySongs: filteredSongs.slice(firstIndexDisplayed + 20, firstIndexDisplayed + 40) });
     }
   }
 
   handleBackwardsClick() {
-    if (this.state.filteredSongs.length === 0) {
-      const firstIndexDisplayed = this.state.songs.indexOf(this.state.displaySongs[0])
-      this.setState({displaySongs: this.state.songs.slice(firstIndexDisplayed - 20, firstIndexDisplayed)})
+    const { filteredSongs, songs, displaySongs } = this.state;
+    if (filteredSongs.length === 0) {
+      const firstIndexDisplayed = songs.indexOf(displaySongs[0]);
+      this.setState({ displaySongs: songs.slice(firstIndexDisplayed - 20, firstIndexDisplayed) });
     } else {
-      const firstIndexDisplayed = this.state.filteredSongs.indexOf(this.state.displaySongs[0])
-      this.setState({displaySongs: this.state.filteredSongs.slice(firstIndexDisplayed - 20, firstIndexDisplayed)})
+      const firstIndexDisplayed = filteredSongs.indexOf(displaySongs[0]);
+      this.setState({ displaySongs: filteredSongs.slice(firstIndexDisplayed - 20, firstIndexDisplayed) });
     }
   }
 
   handleSubmitUsernameClick(value) {
-    this.setState({username: value})
+    this.setState({ username: value });
   }
 
   handleLevelChangeClick(level) {
     const app = this;
     axiosHelpers.fetchByLevel(level, (data) => {
-      console.log(data)
-      app.setState({displaySongs: data.slice(0, 20), filteredSongs: [], songs: data, level: level, scoreInfo: null, percentile: null, playerScore: null, title: null})
+      app.setState({displaySongs: data.slice(0, 20), filteredSongs: [], songs: data, level, scoreInfo: null, percentile: null, playerScore: null, title: null})
     })
   }
 
@@ -87,21 +89,22 @@ class App extends React.Component {
       app.setState({scoreInfo: data, selectedDifficultyIndex: level, title: song})
       if (this.state.username !== null) {
         axiosHelpers.getUserScore(app.state.username, song, level, (score) => {
-        if (score === null) {
-          app.setState({percentile: null, playerScore: null})
-        } else {
-          app.setPercentilebyScore(Number(score))
-        }        
-       })
+          if (score === null) {
+            app.setState({ percentile: null, playerScore: null });
+          } else {
+            app.setPercentilebyScore(Number(score))
+          }      
+        })
       }
   })
   }
 
   handleSubmitScoreClick(score) {
+    const {
+      username, level, selectedDifficultyIndex, title,
+    } = this.state;
     this.setPercentilebyScore(score);
-    axiosHelpers.putScore(this.state.username, score, this.state.level, this.state.selectedDifficultyIndex, this.state.title)
-    //calculation: compare this score with scoreInfo(since they both correspond to the same song. Set the state percentile to be that)
-    //the problem is that this also needs to happen if a song is clicked. But only if score Info is not null.
+    axiosHelpers.putScore(username, score, level, selectedDifficultyIndex, title);
   }
 
   setPercentilebyScore(score) {
@@ -114,30 +117,32 @@ class App extends React.Component {
       }
     }
     const percentile = Math.floor(((totalPlayers - rank) / totalPlayers) * 100);
-    this.setState({percentile: percentile, playerScore: score})
+    this.setState({ percentile, playerScore: score });
   }
 
   sortSongs(e) {
-    const app = this
+    const app = this;
     switch (e.target.id) {
       case 'ABCSort':
-        sorts.ABCSort(this.state.songs)
+        sorts.ABCSort(this.state.songs);
         app.setState({displaySongs: this.state.songs.slice(0, 20)})
         break;
 
       case 'PFCSort':
         sorts.gradeSort(this.state.songs, true).then((sortedArray) => {
-          app.setState({songs: sortedArray, displaySongs: sortedArray.slice(0, 20)})
+          app.setState({ songs: sortedArray, displaySongs: sortedArray.slice(0, 20) });
         }).catch((err) => {
-          console.log(err)
-        })
+          throw err;
+        });
         break;
       case 'AAASort':
         sorts.gradeSort(this.state.songs, false).then((sortedArray) => {
-          app.setState({songs: sortedArray, displaySongs: sortedArray.slice(0, 20)})
+          app.setState({songs: sortedArray, displaySongs: sortedArray.slice(0, 20)});
         }).catch((err) => {
-          console.log(err)
+          throw err;
         })
+        break;
+      default:
         break;
     }
   }
@@ -149,14 +154,14 @@ class App extends React.Component {
         <UsernameText username={this.state.username} handleSubmitUsernameClick={this.handleSubmitUsernameClick} />
         <h2>Choose a level:</h2>
         <LevelClicks handleLevelChangeClick={this.handleLevelChangeClick} selectedLevel={this.state.level} />
-        <div className = "filterSortContainer">
+        <div className="filterSortContainer">
           <span>Filter by name: </span>
           <SongFilter filterSongs={this.filterSongs} />
           <span> or sort by: </span>
           <SongSort sortSongs={this.sortSongs} />
         </div>
-        <div className = "allInfoContainer">
-          <div className = "clicksContainer">
+        <div className="allInfoContainer">
+          <div className="clicksContainer">
             <SongList songs={this.state.displaySongs} handleSongNameClick={this.handleSongNameClick}/>
             <PageNavigationClicks handleBackwardsClick={this.handleBackwardsClick} handleForwardClick={this.handleForwardClick} 
             filteredSongs={this.state.filteredSongs} songs={this.state.songs} displaySongs={this.state.displaySongs}/> 
