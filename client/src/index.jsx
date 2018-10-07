@@ -76,6 +76,7 @@ class App extends React.Component {
   handleLevelChangeClick(level) {
     const app = this;
     axiosHelpers.fetchByLevel(level, (data) => {
+      console.log(data)
       app.setState({displaySongs: data.slice(0, 20), filteredSongs: [], songs: data, level: level, scoreInfo: null, percentile: null, playerScore: null, title: null})
     })
   }
@@ -83,6 +84,7 @@ class App extends React.Component {
   handleSongNameClick(song, level) {
     const app = this;
     axiosHelpers.fetchScoreInfo(song, level, (data) => {
+      console.log(data)
       app.setState({scoreInfo: data, selectedDifficultyIndex: level, title: song})
       if (this.state.username !== null) {
         axiosHelpers.getUserScore(app.state.username, song, level, (score) => {

@@ -3,6 +3,7 @@ const app = require('./index.js')
 const db = require('../database/index.js')
 
 app.get('/songs/:level', (req, res) => {
+  console.log(req.params.level)
   db.findAllByLevel(Number(req.params.level), (data) => {  
     const output = []
     data.forEach(song => {
