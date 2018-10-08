@@ -79,8 +79,17 @@ class App extends React.Component {
   handleLevelChangeClick(level) {
     const app = this;
     axiosHelpers.fetchByLevel(level, (data) => {
-      app.setState({displaySongs: data.slice(0, 20), filteredSongs: [], songs: data, level, scoreInfo: null, percentile: null, playerScore: null, title: null})
-    })
+      app.setState({
+        displaySongs: data.slice(0, 20),
+        filteredSongs: [],
+        songs: data,
+        level,
+        scoreInfo: null,
+        percentile: null,
+        playerScore: null,
+        title: null 
+      });
+    });
   }
 
   handleSongNameClick(song, level) {
