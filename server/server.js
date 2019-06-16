@@ -5,6 +5,8 @@ const db = require('../database/index.js')
 app.get('/songs/:level', (req, res) => {
   console.log(req.params.level)
   db.findAllByLevel(Number(req.params.level), (data) => {  
+<<<<<<< HEAD
+=======
     // const output = []
     // data.forEach(song => {
     //   song.levels.forEach((level, index) => {
@@ -13,6 +15,7 @@ app.get('/songs/:level', (req, res) => {
     //     }
     //   })
     // })
+>>>>>>> dd71dda67881dddcc9fb4a7d4c5e592c42683835
     res.status(200).json(data)
   })      
   }
@@ -31,8 +34,13 @@ app.get('/users/:name/:title/:difficulty', (req, res) => {
     let found = false
     scores.forEach((entry) => {
       if (entry.difficulty === req.params.difficulty && entry.songTitle === req.params.title) {
+<<<<<<< HEAD
+        res.status(200).json(entry.score);
+        found = true;
+=======
         res.status(200).json(entry.score)
         found = true
+>>>>>>> dd71dda67881dddcc9fb4a7d4c5e592c42683835
       }
     })
     if (!found) {

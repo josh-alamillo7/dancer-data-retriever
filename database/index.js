@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 const { MONGO_URI } = require('../config/config.js');
 
+<<<<<<< HEAD
+// MONGO_URI
+=======
+>>>>>>> dd71dda67881dddcc9fb4a7d4c5e592c42683835
 //  'mongodb://localhost/mvpddr'
 mongoose.connect(MONGO_URI);
 
@@ -92,7 +96,14 @@ const findAllByLevel = (number, callback) => {
     if (err) {
       console.log('could not complete level fetch');
     } else {
+<<<<<<< HEAD
+      console.log(data)
+      if (data.length > 0) {
+        callback(data[0].songs);
+      }      
+=======
       callback(data[0].songs);
+>>>>>>> dd71dda67881dddcc9fb4a7d4c5e592c42683835
     }
   });
 };

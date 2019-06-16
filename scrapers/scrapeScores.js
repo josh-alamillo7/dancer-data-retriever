@@ -12,6 +12,10 @@ const idsRegex = /ddIndex.*=new.{1}Array\((.*)\)/
 const levelIndexRegex = /ddSequence=new.{1}Array\((.*)\)/
 
 const songInfoObject = {};
+<<<<<<< HEAD
+const totalSongCount = 862;
+=======
+>>>>>>> dd71dda67881dddcc9fb4a7d4c5e592c42683835
 
 const storeSongInfo = (id, response, title, scoresArray, totalNumberSongs) => {
   songInfo = {};
@@ -85,4 +89,8 @@ const createInfoForSong = (id, totalNumberSongs) => {
   }
 }
 
+<<<<<<< HEAD
+createInfoForSong(0, totalSongCount)
+=======
 createInfoForSong(0, 803)
+>>>>>>> dd71dda67881dddcc9fb4a7d4c5e592c42683835

@@ -19,7 +19,13 @@
     "babel-preset-react": "^6.24.1",
     "eslint": "^4.19.1",
     "express": "^4.16.3",
+<<<<<<< HEAD
+    "heroku": "^7.22.7",
     "mongo": "^0.1.0",
+    "mongod": "^2.0.0",
+=======
+    "mongo": "^0.1.0",
+>>>>>>> dd71dda67881dddcc9fb4a7d4c5e592c42683835
     "mongoose": "^5.0.12",
     "nodemon": "^1.17.2",
     "react": "^16.3.0",

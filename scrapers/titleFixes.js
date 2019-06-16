@@ -218,5 +218,11 @@ module.exports = {
   791: "Plain Asia -PHQ remix-",
   793: "Oboro (dj TAKA Remix)",
   795: "Onegai darling",
+<<<<<<< HEAD
+  796: "Buraikku jokorizer",
+  817: "Schrodinger's Cat",
+  818: "ANNIVERSARY \∴\∵\∴ \←\↓\↑\→",
+=======
   796: "Buraikku jokorizer"
+>>>>>>> dd71dda67881dddcc9fb4a7d4c5e592c42683835
 }
